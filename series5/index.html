@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Converter - Web App Series</title>
+    <meta name="description" content="A free and simple online tool to convert text to uppercase or lowercase. Easily transform your text content with a single click.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Case Converter</h1>
+            <p>Your go-to tool for instantly converting text case.</p>
+        </header>
+
+        <main>
+            <div class="converter-tool">
+                <div class="input-section">
+                    <label for="inputText">Enter your text here:</label>
+                    <textarea id="inputText" rows="10" placeholder="Type or paste your content..."></textarea>
+                </div>
+
+                <div class="controls">
+                    <div class="radio-group">
+                        <input type="radio" id="toUppercase" name="case" value="uppercase" checked>
+                        <label for="toUppercase">UPPERCASE</label>
+                        <input type="radio" id="toLowercase" name="case" value="lowercase">
+                        <label for="toLowercase">lowercase</label>
+                    </div>
+                    <button id="convertBtn">Convert Text</button>
+                </div>
+
+                <div class="output-section">
+                    <label for="outputText">Converted text:</label>
+                    <textarea id="outputText" rows="10" readonly placeholder="Your result will appear here..."></textarea>
+                    <button id="copyBtn">Copy to Clipboard</button>
+                </div>
+            </div>
+
+            <section class="content-guide">
+                <h2>How to Use the Case Converter</h2>
+                <p>Using our Case Converter tool is incredibly simple and designed to be intuitive for everyone. Follow these three easy steps:</p>
+                <ol>
+                    <li><strong>Enter Text:</strong> Type or paste the text you want to convert into the input box labeled "Enter your text here:". You can input single words, full sentences, paragraphs, or even longer documents.</li>
+                    <li><strong>Choose Case:</strong> Select your desired case format. Choose "UPPERCASE" to convert the entire text into capital letters, or "lowercase" to change it all to small letters.</li>
+                    <li><strong>Convert and Copy:</strong> Click the "Convert Text" button. Your transformed text will instantly appear in the "Converted text:" box below. You can then click the "Copy to Clipboard" button to easily copy the result for use elsewhere.</li>
+                </ol>
+
+                <h2>About Our Case Converter Tool</h2>
+                <p>In a digital world, text manipulation is a common task for writers, developers, students, and data analysts. Whether you're formatting a title, cleaning up data, or preparing a document, changing the case of your text is a frequent necessity. Our Case Converter was built to address this need with simplicity and efficiency.</p>
+                
+                <h3>Why Did We Build This?</h3>
+                <p>We believe that fundamental tools should be free, accessible, and straightforward. Many text editors and word processors have case conversion features, but they often require multiple clicks or are buried in menus. Online alternatives can be cluttered with ads or track user data. Our goal was to create a clean, single-purpose tool that performs one task exceptionally well, without distractions. This tool is part of our broader Web App Series, a collection of utilities designed to make everyday digital tasks easier for everyone.</p>
+
+                <h3>For Students and Academics</h3>
+                <p>When writing essays or research papers, adhering to specific formatting guidelines for titles, headings, and references is crucial. The Case Converter helps you quickly switch between cases to meet these requirements, ensuring your work looks professional and is correctly formatted.</p>
+
+                <h3>For Professionals and Developers</h3>
+                <p>Professionals in marketing, communications, and data entry often need to standardize text. Whether it's ensuring all headlines are in title case or cleaning up user-submitted data into a consistent lowercase format, this tool saves time and reduces manual effort. Developers can use it to format constants, variables, or configuration files quickly without writing scripts for a one-off task.</p>
+                
+                <h3>Privacy-Focused</h3>
+                <p>Your privacy is paramount. Unlike other online tools, our Case Converter operates entirely within your browser. The text you enter is processed on your device and is never sent to or stored on our servers. You can use this tool with the confidence that your information remains completely private and secure.</p>
+            </section>
+        </main>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
