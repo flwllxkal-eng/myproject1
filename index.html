@@ -1,21 +1,63 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Generator</title>
+    <title>Advanced Password Generator | Secure Your Digital Life</title>
+    <meta name="description" content="Generate ultra-secure, random passwords with our free tool. Learn the golden rules of password security and protect your digital identity from modern threats.">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Password Generator</h1>
-        <div class="password-display-container">
-            <input type="text" id="password-display" readonly>
-            <button id="copy-button">Copy</button>
-        </div>
-        <button id="generate-button">Generate Password</button>
-    </div>
+
+    <main class="container">
+        <header class="hero-section">
+            <h1>강력하고 안전한 비밀번호 생성기</h1>
+            <p class="subtitle">단 한 번의 클릭으로 해킹이 거의 불가능한 암호를 만드세요.</p>
+        </header>
+
+        <section class="tool-section card">
+            <div class="password-display-container">
+                <input type="text" id="password-display" placeholder="P@ssw0rd!123" readonly>
+                <button id="copy-button" title="Copy to Clipboard">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-5zm0 16H8V7h11v14z"/></svg>
+                </button>
+            </div>
+            <button id="generate-button">새 비밀번호 생성</button>
+        </section>
+
+        <section class="content-section">
+            <div class="card">
+                <h2><span class="highlight">황금률:</span> 강력한 비밀번호의 조건</h2>
+                <p>온라인 계정을 안전하게 지키는 첫걸음은 강력한 비밀번호를 사용하는 것입니다. 다음은 전문가들이 권장하는 '황금률'입니다.</p>
+                <ul>
+                    <li><strong>길이는 곧 힘입니다:</strong> 최소 12자 이상으로 만드세요. 길이가 길어질수록 무차별 대입 공격(Brute-force attack)으로 암호를 알아내는 데 걸리는 시간이 기하급수적으로 늘어납니다.</li>
+                    <li><strong>복잡성은 필수입니다:</strong> 영어 대문자(A-Z), 소문자(a-z), 숫자(0-9), 그리고 특수문자(!, @, # 등)를 모두 조합하여 사용하세요. 예측하기 어려운 조합이 보안 수준을 높입니다.</li>
+                    <li><strong>고유성을 유지하세요:</strong> 모든 계정에 각기 다른 비밀번호를 사용하세요. 하나의 서비스에서 정보가 유출되더라도 다른 계정들이 안전하게 보호됩니다.</li>
+                    <li><strong>개인정보는 피하세요:</strong> 이름, 생년월일, 전화번호, 또는 'password123'과 같이 추측하기 쉬운 정보는 절대 사용하지 마세요.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>왜 이 비밀번호 생성기를 사용해야 할까요?</h2>
+                <p>우리의 뇌는 진정한 '무작위'를 만드는 데 익숙하지 않습니다. 우리는 예측 가능한 패턴을 따르는 경향이 있으며, 이는 해커들에게 좋은 먹잇감이 됩니다.</p>
+                <p>이 도구는 다음과 같은 원칙에 따라 여러분의 디지털 자산을 보호합니다.</p>
+                <ul>
+                    <li><strong>완벽한 무작위성:</strong> 이 도구는 컴퓨터의 계산 능력을 이용해 사람이 생각할 수 없는 진정한 무작위 문자열을 생성합니다. 여기에는 어떠한 패턴도 존재하지 않습니다.</li>
+                    <li><strong>클라이언트 측 작동:</strong> 모든 비밀번호 생성 과정은 여러분의 웹 브라우저 안에서만 이루어집니다. 생성된 비밀번호는 인터넷을 통해 그 어디에도 전송되거나 저장되지 않으므로, 오직 당신만이 알 수 있습니다.</li>
+                    <li><strong>시간 절약과 보안 강화:</strong> 더 이상 안전한 비밀번호를 고민하느라 시간을 낭비하지 마세요. 버튼 클릭 한 번으로, 현재 알려진 거의 모든 해킹 기술로부터 안전한 강력한 비밀번호를 즉시 얻을 수 있습니다.</li>
+                </ul>
+                <p>온라인 보안은 더 이상 선택이 아닌 필수입니다. 정기적으로 비밀번호를 변경하고, 가능하면 2단계 인증(2FA)을 활성화하여 계정에 추가적인 보안 계층을 더하는 것이 현명합니다.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Secure Password Generator. All Rights Reserved.</p>
+    </footer>
+
     <script src="main.js"></script>
 </body>
 </html>
