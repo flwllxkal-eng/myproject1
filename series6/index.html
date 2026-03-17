@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word and Character Counter - Web App Series</title>
+    <meta name="description" content="A free online tool to count words, characters, sentences, and spaces in your text. Perfect for writers, students, and professionals who need accurate text analysis.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Word and Character Counter</h1>
+            <p>Analyze your text in real-time with instant results.</p>
+        </header>
+
+        <main>
+            <div class="counter-tool">
+                <div class="input-section">
+                    <label for="inputText">Enter your text below:</label>
+                    <textarea id="inputText" rows="12" placeholder="Start typing, or paste your text here..."></textarea>
+                </div>
+
+                <div class="results-grid">
+                    <div class="result-box">
+                        <span class="result-label">Words</span>
+                        <span id="wordCount" class="result-value">0</span>
+                    </div>
+                    <div class="result-box">
+                        <span class="result-label">Characters</span>
+                        <span id="charCount" class="result-value">0</span>
+                    </div>
+                    <div class="result-box">
+                        <span class="result-label">Characters (no spaces)</span>
+                        <span id="charCountNoSpaces" class="result-value">0</span>
+                    </div>
+                    <div class="result-box">
+                        <span class="result-label">Spaces</span>
+                        <span id="spaceCount" class="result-value">0</span>
+                    </div>
+                    <div class="result-box">
+                        <span class="result-label">Sentences</span>
+                        <span id="sentenceCount" class="result-value">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <section class="content-guide">
+                <h2>How to Use the Word Counter</h2>
+                <p>Our tool provides instant analysis of your text with zero hassle. Here's how it works:</p>
+                <ol>
+                    <li><strong>Enter Your Text:</strong> Simply start typing or paste your text directly into the text area above.</li>
+                    <li><strong>View Real-Time Results:</strong> The counters for words, characters, spaces, and sentences will update instantly as you type. There is no need to click any buttons.</li>
+                    <li><strong>Understand the Metrics:</strong> Use the detailed breakdown to check if you are meeting specific requirements for an essay, tweet, or report.</li>
+                </ol>
+
+                <h2>About Our Text Analysis Tool</h2>
+                <p>In a world driven by content, precision matters. Whether you are a student striving to meet the word count for an essay, a marketer crafting the perfect social media post, or a writer ensuring your chapter length is consistent, a reliable text counter is an indispensable tool. We built this Word and Character Counter to provide a clean, fast, and privacy-focused solution for everyone.</p>
+
+                <h3>Why is Text Counting Important?</h3>
+                <p>Text metrics are crucial in many fields. Here are just a few examples:</p>
+                <ul>
+                    <li><strong>Academic Writing:</strong> University and school assignments often come with strict word count limits. Exceeding or falling short of these limits can lead to penalties. Our tool helps you stay on track.</li>
+                    <li><strong>Search Engine Optimization (SEO):</strong> The length of your content can impact its search engine ranking. Blog posts and articles of a certain length (e.g., over 1,500 words) often perform better. Our counter helps you manage your content strategy effectively.</li>
+                    <li><strong>Social Media Management:</strong> Platforms like X (formerly Twitter), Instagram, and LinkedIn have character limits. This tool ensures your message fits perfectly without having to guess.</li>
+                    <li><strong>Professional Communications:</strong> When writing professional emails, reports, or proposals, being concise is key. Counting words and sentences can help you make your point more effectively.</li>
+                </ul>
+
+                <h3>A Commitment to Privacy</h3>
+                <p>We believe that your data is your own. This tool is built on the principle of privacy by design. All calculations are performed directly in your browser. Your text is never sent to our servers, never stored, and never analyzed for any purpose other than providing you with the counts you see. You can use this tool with the complete assurance that your work remains private and secure.</p>
+                
+                <p>This commitment to privacy and functionality is at the core of our Web App Series. We aim to provide simple, powerful tools that are free to use and respect user privacy, making the digital world a little more efficient for everyone.</p>
+            </section>
+        </main>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

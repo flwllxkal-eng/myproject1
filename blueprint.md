@@ -49,28 +49,34 @@ This document outlines the development plan and features for a series of AI-powe
 
 *   **Objective:** Develop a comprehensive tool for text case conversion.
 *   **Features:**
-    *   **Multiple Conversion Options:** Supports UPPERCASE, lowercase, Sentence case, and Title Case.
-    *   **Instant Conversion:** Text is converted in real-time as the user types or changes the conversion option.
+    *   **Multiple Conversion Options:** Supports UPPERCASE and lowercase.
+    *   **Instant Conversion:** Text is converted with a button click.
     *   **Copy to Clipboard:** A dedicated button allows users to copy the converted text with a single click.
-    *   **Clear & Intuitive UI:** A simple layout with a textarea for input, radio buttons for conversion selection, and a clear display for the output.
-    *   **In-depth Content:** Provides a detailed explanation of what case conversion is, why it's useful (for developers, writers, data analysts), and how each conversion type works. The content will be written to a high standard to meet Google AdSense guidelines.
-    *   **Usage Guide:** A "How to Use" section will provide simple, step-by-step instructions.
+    *   **In-depth Content:** Provides a detailed explanation of what case conversion is, why it's useful, and how it works, aiming for Google AdSense guidelines.
+*   **Tech Stack:** HTML, CSS, JavaScript (ES Modules).
+
+## Series #6: Word and Character Counter
+
+*   **Objective:** Create a real-time tool to count words, characters, sentences, and spaces.
+*   **Features:**
+    *   **Real-Time Analysis:** Instantly counts and displays key metrics as the user types.
+    *   **Comprehensive Metrics:** Calculates and shows Word Count, Character Count (with and without spaces), Space Count, and Sentence Count.
+    *   **Clean & Familiar UI:** The user interface will be modeled after Series #5 for consistency and ease of use, featuring a large input area and a clear results display.
+    *   **High-Quality AdSense Content:** The page will include a comprehensive guide explaining the importance of word counts for SEO, academic writing, and social media. It will detail how to use the tool and its benefits for various professionals (writers, students, marketers, developers).
 *   **Tech Stack:** HTML, CSS, JavaScript (ES Modules).
 
 ---
 
-### **Current Request Plan: Series #5**
+### **Current Request Plan: Series #6**
 
-1.  **Create `series5` Directory:** Set up a new directory for the fifth project.
+1.  **Create `series6` Directory:** Set up a new directory for the sixth project.
 2.  **Develop `index.html`:**
-    *   Structure the page with a header, the case converter tool, and detailed "How to Use" and "About Case Conversion" sections.
-    *   Write comprehensive, original, and high-quality English content to explain the tool's functionality and importance, aiming for AdSense approval.
+    *   Structure the page with a header, the counter tool, and detailed informational sections.
+    *   Write original, high-quality English content aimed at passing AdSense review, explaining the tool's value and application.
 3.  **Develop `style.css`:**
-    *   Adapt styles from previous series to maintain a consistent, professional design.
-    *   Ensure the layout is clean, responsive, and user-friendly.
+    *   Leverage the style from Series #5 to ensure design consistency and adapt it for the new results section.
 4.  **Develop `main.js`:**
-    *   Implement the logic for text conversion (UPPERCASE, lowercase, etc.).
-    *   Add event listeners to the textarea and radio buttons to trigger real-time conversion.
-    *   Implement the "Copy to Clipboard" functionality.
-5.  **Update Main `index.html`:** Add a new card to the main navigation to link to the "Case Converter" series.
-6.  **Git Integration:** Commit all new files with a descriptive message ("feat: Initialize Series #5 - Case Converter") and push to the remote repository.
+    *   Implement the logic to count words, characters (with/without spaces), spaces, and sentences in real-time.
+    *   Attach an event listener to the input area to trigger the counting functions as the user types.
+5.  **Update Main `index.html`:** Add a new navigation card to the main page to link to the "Word and Character Counter" series.
+6.  **Git Integration:** Commit all new files with a descriptive message and push to the remote repository.
