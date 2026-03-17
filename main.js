@@ -1,4 +1,3 @@
-
 const passwordDisplay = document.getElementById('password-display');
 const generateButton = document.getElementById('generate-button');
 const copyButton = document.getElementById('copy-button');
@@ -12,21 +11,21 @@ const allChars = uppercaseChars + lowercaseChars + numberChars + specialChars;
 
 generateButton.addEventListener('click', () => {
     const passwordLength = Math.floor(Math.random() * 5) + 8; // 8-12 characters
-    
-    // 각 종류의 문자를 하나씩 보장
+
+    // 1. Guarantee at least one of each character type
     let password = '';
     password += uppercaseChars[Math.floor(Math.random() * uppercaseChars.length)];
     password += lowercaseChars[Math.floor(Math.random() * lowercaseChars.length)];
     password += numberChars[Math.floor(Math.random() * numberChars.length)];
     password += specialChars[Math.floor(Math.random() * specialChars.length)];
 
-    // 나머지 길이를 모든 문자 종류에서 랜덤하게 채움
+    // 2. Fill the rest of the password length with random characters from all types
     for (let i = 4; i < passwordLength; i++) {
         const randomIndex = Math.floor(Math.random() * allChars.length);
         password += allChars[randomIndex];
     }
 
-    // 생성된 비밀번호를 섞어서 순서 예측 불가능하게 만듦
+    // 3. Shuffle the password to make the character order unpredictable
     const shuffledPassword = password.split('').sort(() => 0.5 - Math.random()).join('');
 
     passwordDisplay.value = shuffledPassword;
@@ -34,12 +33,12 @@ generateButton.addEventListener('click', () => {
 
 copyButton.addEventListener('click', () => {
     passwordDisplay.select();
-    // execCommand는 오래된 방식이므로 새로운 Clipboard API를 사용합니다.
+    // Use the modern Clipboard API instead of the deprecated execCommand
     navigator.clipboard.writeText(passwordDisplay.value).then(() => {
-        // (선택사항) 복사 성공 시 사용자에게 알림
-        copyButton.textContent = 'Copied!';
+        // (Optional) Notify the user that the copy was successful
+        copyButton.innerHTML = 'Copied!'; // Use innerHTML to easily change back to SVG later if needed
         setTimeout(() => {
-            copyButton.textContent = 'Copy';
+            copyButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-5zm0 16H8V7h11v14z"/></svg>';
         }, 1500);
     }).catch(err => {
         console.error('Failed to copy: ', err);
