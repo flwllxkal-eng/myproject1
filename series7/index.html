@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image File Size Calculator - Web App Series</title>
+    <meta name="description" content="Estimate the uncompressed file size of an image based on its dimensions and color depth. A useful tool for web developers, designers, and content creators.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Image File Size Calculator</h1>
+            <p>Estimate an image's uncompressed file size in real-time.</p>
+        </header>
+
+        <main>
+            <div class="calculator-tool">
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="imgWidth">Width (pixels)</label>
+                        <input type="number" id="imgWidth" placeholder="e.g., 1920" min="1">
+                    </div>
+                    <div class="input-group">
+                        <label for="imgHeight">Height (pixels)</label>
+                        <input type="number" id="imgHeight" placeholder="e.g., 1080" min="1">
+                    </div>
+                    <div class="input-group">
+                        <label for="colorDepth">Color Depth</label>
+                        <select id="colorDepth">
+                            <option value="1">1-bit (2 colors)</option>
+                            <option value="4">4-bit (16 colors)</option>
+                            <option value="8" selected>8-bit (256 colors)</option>
+                            <option value="16">16-bit (High Color)</option>
+                            <option value="24">24-bit (True Color)</option>
+                            <option value="32">32-bit (True Color + Alpha)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="results-display">
+                    <p>Estimated File Size:</p>
+                    <h2 id="fileSize">0 Bytes</h2>
+                    <div id="detailedSizes"></div>
+                </div>
+            </div>
+
+            <section class="content-guide">
+                <h2>Understanding Image File Sizes</h2>
+                <p>Ever wondered why some images take forever to load while others appear instantly? It all comes down to file size. This calculator helps you understand the relationship between an image's properties and its uncompressed size, a foundational concept in digital imaging and web development.</p>
+
+                <h3>How Does This Calculator Work?</h3>
+                <p>The calculation is based on a simple formula that multiplies the image's dimensions by its color depth. The formula is:</p>
+                <p><code>(Width in Pixels &times; Height in Pixels &times; Color Depth in Bits) / 8 = File Size in Bytes</code></p>
+                <p>This gives you the raw, uncompressed size of the image data. Note that this does not account for compression algorithms like JPEG, PNG, or GIF, which significantly reduce the final file size.</p>
+                
+                <h4>Key Concepts:</h4>
+                <ul>
+                    <li><strong>Pixels:</strong> A digital image is a grid of tiny dots called pixels. The more pixels an image has (e.g., 1920x1080), the more detail it can hold.</li>
+                    <li><strong>Color Depth (Bits Per Pixel):</strong> This value determines how many colors each pixel can display. An 8-bit image can have 256 different colors (2<sup>8</sup>), while a 24-bit "True Color" image can have 16.7 million colors (2<sup>24</sup>). Higher color depth means more vibrant images but a larger file size.</li>
+                </ul>
+
+                <h3>Why is File Size Important for the Web?</h3>
+                <p>Managing image file sizes is one of the most critical aspects of web performance optimization.</p>
+                <ul>
+                    <li><strong>Faster Loading Times:</strong> Smaller images transfer from the server to the user's browser more quickly, leading to a faster, more enjoyable user experience.</li>
+                    <li><strong>Improved SEO:</strong> Search engines like Google use page load speed as a ranking factor. Faster websites rank higher, and optimizing images is a key part of achieving that speed.</li>
+                    <li><strong>Reduced Bandwidth Costs:</strong> For website owners, smaller files mean less data to transfer, which can lead to lower hosting and bandwidth costs. For users on mobile data plans, it means saving their data allowance.</li>
+                </ul>
+                <p>By using this tool, you can get a baseline understanding of your image's data footprint before it even gets compressed. This knowledge empowers developers, designers, and content creators to make smarter decisions when creating and optimizing images for the web, ensuring a better experience for everyone.</p>
+            </section>
+        </main>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
