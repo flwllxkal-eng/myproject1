@@ -16,7 +16,6 @@ async function populateCurrencies() {
         }
         const currencies = await response.json();
         
-        // Add currencies to select options
         for (const currencyCode in currencies) {
             const option1 = new Option(`${currencyCode} - ${currencies[currencyCode]}`, currencyCode);
             const option2 = new Option(`${currencyCode} - ${currencies[currencyCode]}`, currencyCode);
@@ -24,11 +23,9 @@ async function populateCurrencies() {
             toCurrencySelect.add(option2);
         }
 
-        // Set default values
         fromCurrencySelect.value = 'USD';
         toCurrencySelect.value = 'EUR';
 
-        // Initial conversion
         convertCurrency();
 
     } catch (error) {
@@ -48,29 +45,36 @@ async function convertCurrency() {
         return;
     }
     
-    // If amount is not a number (e.g. '1e')
     if (isNaN(amount)) {
         resultText.textContent = 'Invalid number format.';
         return;
     }
 
+    const inputAmount = parseFloat(amount);
+    const formattedInputAmount = inputAmount.toLocaleString('en-US');
+
     if (fromCurrency === toCurrency) {
-        resultText.textContent = `${amount} ${fromCurrency} = ${amount} ${toCurrency}`;
+        resultText.textContent = `${formattedInputAmount} ${fromCurrency} = ${formattedInputAmount} ${toCurrency}`;
         return;
     }
 
     resultText.textContent = 'Converting...';
 
     try {
-        // The API handles the amount=1 case gracefully if it's not provided
-        const response = await fetch(`${API_URL}/latest?amount=${parseFloat(amount)}&from=${fromCurrency}&to=${toCurrency}`);
+        const response = await fetch(`${API_URL}/latest?amount=${inputAmount}&from=${fromCurrency}&to=${toCurrency}`);
         if (!response.ok) {
             throw new Error('Conversion request failed.');
         }
         const data = await response.json();
         const convertedAmount = data.rates[toCurrency];
 
-        resultText.textContent = `${amount} ${fromCurrency} = ${convertedAmount.toFixed(3)} ${toCurrency}`;
+        // Use toLocaleString to add thousand separators and control decimal places
+        const formattedConvertedAmount = convertedAmount.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+        });
+
+        resultText.textContent = `${formattedInputAmount} ${fromCurrency} = ${formattedConvertedAmount} ${toCurrency}`;
 
     } catch (error) {
         console.error('Error converting currency:', error);
@@ -79,7 +83,6 @@ async function convertCurrency() {
 }
 
 // 3. Event Listeners
-
 amountInput.addEventListener('input', convertCurrency);
 fromCurrencySelect.addEventListener('change', convertCurrency);
 toCurrencySelect.addEventListener('change', convertCurrency);
