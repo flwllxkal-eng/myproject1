@@ -1,42 +1,66 @@
-# Project Blueprint
+# AI-Powered Web App Development Blueprint
 
 ## Overview
 
-This project is a personal development log and project hub for flwllxkal-eng. The main domain serves as a blog-style introductory page, outlining the owner's work, vision, and future plans. It also acts as the central point of navigation to a collection of distinct web applications, referred to as "series."
+This document outlines the development plan and features for a series of AI-powered web applications. The goal is to create modern, useful, and aesthetically pleasing single-page applications using vanilla JavaScript, HTML, and CSS, leveraging modern web standards. Each series builds upon the last, introducing new concepts and capabilities.
 
-This multi-page structure allows for a content-rich introduction on the main page while keeping individual projects cleanly separated and organized in their own directories, making the entire site easy to manage and scale.
+## Series #1: Simple Image Gallery
 
-## Implemented Features & Design
+*   **Objective:** Create a clean, responsive image gallery.
+*   **Features:**
+    *   Dynamic image loading from a JavaScript array.
+    *   Modal view for larger images when a thumbnail is clicked.
+    *   Modern, minimalist design with CSS Flexbox/Grid.
+    *   Accessibility features (e.g., alt tags, keyboard navigation).
+*   **Tech Stack:** HTML, CSS, JavaScript (ES Modules).
 
-### Main Dev Log (Root: `/`)
+## Series #2: Interactive Quiz Game
 
-*   **Purpose:** To serve as a personal development blog and an introduction to the owner's work and project series.
-*   **Internationalization (i18n):** All content is in English for a global audience.
-*   **Content:** Introduces flwllxkal-eng, explains the purpose of the site, and outlines future plans.
-*   **Layout:** A clean, professional blog-style layout that prioritizes readability.
-*   **Styling:** Uses the 'Roboto' font for excellent readability in English.
-*   **Structure:** Includes a header, a main content body, a card-based navigation section for project series, and a footer.
+*   **Objective:** Build an engaging, interactive quiz application.
+*   **Features:**
+    *   Multiple-choice questions loaded from a structured JavaScript object.
+    *   Immediate feedback on user answers (correct/incorrect).
+    *   Score tracking and final results display.
+    *   Polished UI with animations for transitions and feedback.
+*   **Tech Stack:** HTML, CSS, JavaScript (ES Modules).
 
-### Series #1: Password Generator (`/series1/`)
+## Series #3: Versatile Unit Converter
 
-*   **Functionality:** A sophisticated and user-friendly password generator web application.
-*   **Internationalization (i18n):** All content is in English.
-*   **Advanced Password Generation:** Creates random, strong passwords.
-*   **Modern & Secure UI:** Features a dark mode theme, responsive design, and interactive elements.
+*   **Objective:** Create a tool for converting various units of measurement.
+*   **Features:**
+    *   Supports Length, Weight, and Temperature conversions.
+    *   Dynamic population of unit options based on the selected category.
+    *   Real-time conversion as the user types.
+    *   Includes a wide range of international and traditional units.
+    *   Informative content section explaining the importance and context of unit conversion.
+*   **Tech Stack:** HTML, CSS, JavaScript (ES Modules).
 
-### Series #2: Plant Watering Scheduler (`/series2/`)
+## Series #4: Real-Time Currency Converter
 
-*   **Functionality:** A tool to create and track a watering schedule for plants.
-*   **Core Features:**
-    *   **Start Date Selection:** Users can pick any start date from a calendar.
-    *   **Custom Interval:** Users can define how many days are between each watering.
-    *   **Variable Duration:** View the schedule for 1, 3, 6, or 12 months.
-    *   **Calendar Export:** Users can download an `.ics` file to import the schedule into their own calendar (e.g., Google Calendar, Apple Calendar).
-*   **Design:** A beautiful and intuitive plant-themed design that is clean, responsive, and easy to use.
+*   **Objective:** Build a blog-style page with a real-time currency conversion tool.
+*   **Features:**
+    *   **Real-Time Exchange Rates:** Fetches the latest currency exchange rates from the reliable `frankfurter.app` API (which sources from the European Central Bank).
+    *   **User-Friendly Interface:** Utilizes the clean design and layout from Series #3 for a consistent user experience. Users can input an amount and select 'from' and 'to' currencies from a dropdown.
+    *   **No API Key Required:** Leverages an open API, removing the need for user sign-up or key management.
+    *   **AdSense-Optimized Content:** Includes a detailed, high-quality article explaining how to use the tool, the importance of currency conversion for travelers, online shoppers, and businesses, and information about the data source. This is designed to meet Google AdSense content quality guidelines.
+    *   **Dynamic & Responsive:** The tool provides instant conversion results and the entire page is fully responsive for both mobile and desktop devices.
+*   **Tech Stack:** HTML, CSS, JavaScript with `fetch` API for asynchronous requests.
 
-## Current Plan
+---
 
-*   **Create Series #2:** Developed the Plant Watering Scheduler application. (Completed)
-    *   Created the HTML structure, CSS styles, and JavaScript logic. (Completed)
-    *   Added a link to the new series on the main hub page. (Completed)
-    *   Updated this blueprint to document the new project. (Completed)
+### **Current Request Plan**
+
+1.  **Create `series4` Directory:** Set up a new directory for the fourth project.
+2.  **Develop `index.html`:**
+    *   Structure the page with a header, the currency converter tool, and a detailed content section.
+    *   Write comprehensive, original content to explain the tool and its use cases, targeting AdSense approval.
+3.  **Develop `style.css`:**
+    *   Copy the styles from `series3` to ensure a consistent and high-quality design, making minor adjustments as needed.
+4.  **Develop `main.js`:**
+    *   Implement the core logic for the currency converter.
+    *   Use the `fetch` API to communicate with `https://api.frankfurter.app/`.
+    *   Write a function to dynamically populate the currency selection dropdowns.
+    *   Write a function to calculate and display the converted amount based on user input.
+    *   Add event listeners to trigger conversions in real-time.
+5.  **Git Integration:** Add all new files to a new commit.
+

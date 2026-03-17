@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Currency Converter | Free & Accurate Exchange Rates</title>
+    <meta name="description" content="A free, real-time currency converter tool. Get accurate and up-to-date exchange rates for over 30 global currencies. Perfect for travelers, online shoppers, and businesses.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Real-Time Currency Converter</h1>
+            <p class="subtitle">Your reliable tool for up-to-the-minute exchange rates.</p>
+        </header>
+
+        <main>
+            <div class="converter-wrapper">
+                <div class="converter-card">
+                    <div class="input-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" id="amount" value="1" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="from-currency">From</label>
+                        <select id="from-currency"></select>
+                    </div>
+                    <div class="swap-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h18m-7.5-14L21 7.5m0 0L16.5 12M21 7.5H3" />
+                        </svg>
+                    </div>
+                    <div class="input-group">
+                        <label for="to-currency">To</label>
+                        <select id="to-currency"></select>
+                    </div>
+                </div>
+                <div class="result-wrapper">
+                    <p id="result-text">1 USD = 0.93 EUR</p>
+                </div>
+            </div>
+
+            <article class="content-section">
+                <h2>Welcome to Your Go-To Currency Conversion Hub</h2>
+                <p>In an increasingly connected world, understanding the value of your money across borders is more important than ever. Whether you're a globetrotter planning your next adventure, an online shopper hunting for international deals, or a business professional managing global transactions, our Real-Time Currency Converter is here to simplify your financial calculations. This tool provides you with fast, accurate, and easy-to-understand exchange rates, all for free.</p>
+
+                <h3>How to Use Our Currency Converter</h3>
+                <p>Using our tool is as simple as 1-2-3. We've designed it with a clean, intuitive interface to give you the information you need without any hassle.</p>
+                <ol>
+                    <li><strong>Enter the Amount:</strong> Start by typing the amount of money you wish to convert into the "Amount" field.</li>
+                    <li><strong>Select the 'From' Currency:</strong> Click on the dropdown menu under "From" and choose the currency you are converting from. The list contains over 30 major world currencies.</li>
+                    <li><strong>Select the 'To' Currency:</strong> Next, click the dropdown menu under "To" and select the currency you want to convert to.</li>
+                </ol>
+                <p>That's it! The converted amount will instantly appear below the converter, updated in real-time. You can also click the swap icon between the two currency selectors to quickly reverse your conversion.</p>
+
+                <h3>Why is a Reliable Currency Converter Important?</h3>
+                <h4>For Travelers</h4>
+                <p>Budgeting for an international trip can be complex. A reliable currency converter helps you understand how much you're truly spending, from booking accommodations and flights to buying souvenirs. With up-to-date rates, you can manage your budget effectively and avoid unpleasant financial surprises.</p>
+
+                <h4>For Online Shoppers</h4>
+                <p>The internet has made the world a global marketplace. Found a product from a store in another country? Our converter lets you see the price in your home currency instantly, so you can compare prices and make sure you're getting the best deal without hidden conversion fees from your bank.</p>
+
+                <h4>For Businesses and Freelancers</h4>
+                <p>If you work with international clients or suppliers, you're dealing with multiple currencies daily. Accurate exchange rates are crucial for invoicing, managing payments, and forecasting revenue. Our tool ensures you have reliable data at your fingertips to make informed financial decisions.</p>
+
+                <h3>About Our Data</h3>
+                <p>We are committed to providing you with the most accurate and trustworthy information. All our exchange rate data is sourced from <a href="https://www.frankfurter.app" target="_blank" rel="noopener noreferrer">frankfurter.app</a>, which in turn sources its data from the European Central Bank. The rates are updated daily, so you can be confident that you are getting current market values. We believe in transparency and reliability, which is why we chose a data source that is both reputable and openly accessible.</p>
+                <p>Thank you for using our tool. We hope it makes your life a little easier. Bookmark this page for all your future currency conversion needs!</p>
+            </article>
+        </main>
+
+        <footer>
+            <p>Powered by AI. Data from the European Central Bank.</p>
+        </footer>
+
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
