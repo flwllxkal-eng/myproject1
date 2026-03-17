@@ -1,0 +1,206 @@
+/* General Body Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212;
+    color: #E0E0E0;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+    background-size: 20px 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Card Styles */
+.card {
+    background-color: #1E1E1E;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* Header and Hero Section */
+.hero-section {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.hero-section h1 {
+    font-weight: 900;
+    font-size: 3rem;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #A0A0A0;
+}
+
+/* Tool Section */
+.tool-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.password-display-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#password-display {
+    flex-grow: 1;
+    font-family: 'Roboto', monospace;
+    font-size: 1.5rem;
+    background-color: #101010;
+    border: 1px solid #444;
+    color: #4CAF50;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+}
+
+#copy-button {
+    flex-shrink: 0;
+    background-color: #333;
+    border: 1px solid #555;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#copy-button:hover {
+    background-color: #444;
+    transform: translateY(-2px);
+}
+
+#copy-button svg {
+    fill: #E0E0E0;
+}
+
+#generate-button {
+    background-image: linear-gradient(to right, #4CAF50 0%, #81C784 51%, #4CAF50 100%);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px 0 rgba(76, 175, 80, 0.4);
+    background-size: 200% auto;
+}
+
+#generate-button:hover {
+    background-position: right center;
+    transform: scale(1.02);
+}
+
+/* Content Section */
+.content-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    border-left: 4px solid #4CAF50;
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.content-section .highlight {
+    color: #4CAF50;
+}
+
+.content-section ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.content-section ul li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.content-section ul li::before {
+    content: '\2713'; /* Checkmark character */
+    position: absolute;
+    left: 0;
+    color: #4CAF50;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.content-section p {
+    font-size: 1.1rem;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 1.5rem;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+.keywords-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+.keywords-section h3 {
+    color: #A0A0A0;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.hashtags {
+    font-size: 1rem;
+    color: #E0E0E0;
+    line-height: 1.6;
+    word-spacing: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+
+    .content-section h2 {
+        font-size: 1.6rem;
+    }
+
+    #password-display {
+        font-size: 1.2rem;
+    }
+}
