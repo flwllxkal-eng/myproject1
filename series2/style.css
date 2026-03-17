@@ -2,6 +2,7 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: #f0f4f0; /* Light greenish-gray */
     color: #333;
+    line-height: 1.6;
     margin: 0;
 }
 
@@ -29,8 +30,8 @@ body {
     color: #556b55; /* Muted Green */
 }
 
-/* Main Tool Area */
-.scheduler-tool > * {
+/* Main Tool Area & Content Guide */
+.scheduler-tool > *, .content-guide {
     background-color: #ffffff;
     border-radius: 12px;
     padding: 30px;
@@ -38,8 +39,8 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* Input & Controls */
-.controls-card h2, .duration-card h2, .schedule-output-card h2 {
+/* Card Headings */
+.controls-card h2, .duration-card h2, .schedule-output-card h2, .content-guide h2 {
     font-family: 'Merriweather', serif;
     color: #2e6b2e;
     margin-top: 0;
@@ -142,6 +143,41 @@ body {
 .export-btn:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
+}
+
+/* Content Guide Section */
+.content-guide h3 {
+    font-family: 'Merriweather', serif;
+    color: #3e8e41; /* Brighter Green */
+    margin-top: 30px;
+}
+
+.content-guide p,
+.content-guide li {
+    color: #444;
+    font-size: 1.05rem;
+}
+
+.content-guide ol,
+.content-guide ul {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.content-guide ol li {
+    margin-bottom: 15px;
+}
+
+.content-guide ul li {
+    margin-bottom: 12px;
+}
+
+.content-guide .disclaimer {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #fefaf0;
+    border-left: 5px solid #f0ad4e; /* Warning yellow */
+    font-style: italic;
 }
 
 /* Footer */
