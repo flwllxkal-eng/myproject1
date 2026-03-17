@@ -62,18 +62,25 @@ This document outlines the development plan and features for a series of AI-powe
     *   **User-Friendly Interface:** A clean and intuitive UI, consistent with previous series, for easy input and clear results.
 *   **Tech Stack:** HTML, CSS, JavaScript (ES Modules).
 
+## Series #8: Encryption/Decryption Tool
+
+*   **Objective:** Build a secure tool for text encryption and decryption using modern web standards.
+*   **Features:**
+    *   **Secure Encryption:** Utilizes the **Web Crypto API** with the industry-standard **AES-GCM** algorithm for strong, authenticated encryption.
+    *   **Password-Based Key Derivation:** Securely derives a cryptographic key from a user-provided password using the **PBKDF2** algorithm, preventing simple dictionary attacks.
+    *   **User-Friendly Interface:** Simple inputs for text and a password, with clear buttons for "Encrypt" and "Decrypt" actions.
+    *   **Educational Content:** Includes high-quality explanations about the importance of encryption, what AES-GCM is, how the Web Crypto API works, and why password-based key derivation is crucial for security. This content aims to build user trust and provide educational value.
+*   **Tech Stack:** HTML, CSS, and modern JavaScript utilizing the **Web Crypto API**.
+
 ---
 
-### **Current Request Plan: Series #7**
+### **Current Request Plan: Series #8**
 
-1.  **Create `series7` Directory:** Set up a new directory for the seventh project.
-2.  **Develop `index.html`:**
-    *   Structure the page with input fields for width, height, and a dropdown for color depth.
-    *   Include a clear results display area and comprehensive, original English content about image file sizes for AdSense.
-3.  **Develop `style.css`:**
-    *   Maintain design consistency by adapting the styles from Series #6.
-4.  **Develop `main.js`:**
-    *   Implement the mathematical logic to calculate the estimated file size in real-time based on the formula: `(Width * Height * BitsPerPixel) / 8`.
-    *   Convert the result into B, KB, and MB and display it.
-5.  **Update Main `index.html`:** Add a new navigation card to the main page to link to the "Image File Size Calculator" series.
-6.  **Git Integration:** Commit all new files and push them to the remote repository.
+1.  **Correct `index.html` Link:** Fix the missing hyperlink for the Series #7 navigation card on the main page.
+2.  **Update `blueprint.md`:** Add the full plan for Series #8.
+3.  **Create `series8` Directory:** Set up a new directory for the eighth project.
+4.  **Develop `series8/index.html`:** Structure the page with text areas for input/output, a password field, and control buttons. Include detailed, original English content on Web Crypto, AES-GCM, and security best practices.
+5.  **Develop `series8/style.css`:** Adapt the styles from previous series to maintain a consistent look and feel.
+6.  **Develop `series8/main.js`:** Implement the core cryptographic functions using the Web Crypto API, including key derivation (PBKDF2), encryption (AES-GCM), and decryption (AES-GCM).
+7.  **Update Main `index.html`:** Add a new navigation card linking to the "Encryption/Decryption Tool" series.
+8.  **Git Integration:** Commit all new and modified files and push them to the remote repository.

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Encryption & Decryption Tool - Web App Series</title>
+    <meta name="description" content="A secure tool to encrypt and decrypt text using the modern Web Crypto API with AES-GCM. Your data is processed securely in your browser and is never sent to a server.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Secure Text Encryption Tool</h1>
+            <p>Encrypt and decrypt text securely in your browser. No data is ever sent to a server.</p>
+        </header>
+
+        <main>
+            <div class="crypto-tool">
+                <div class="io-grid">
+                    <div class="input-group">
+                        <label for="inputText">Enter Text Here</label>
+                        <textarea id="inputText" rows="8" placeholder="Type or paste the text you want to encrypt or decrypt."></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter a strong password">
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="encryptBtn" class="btn btn-primary">Encrypt</button>
+                    <button id="decryptBtn" class="btn btn-secondary">Decrypt</button>
+                </div>
+
+                <div class="output-group">
+                    <label for="outputText">Result</label>
+                    <textarea id="outputText" rows="8" readonly placeholder="The result will appear here..."></textarea>
+                    <div id="status" class="status-message"></div>
+                </div>
+            </div>
+
+            <section class="content-guide">
+                <h2>Understanding Modern Web Encryption</h2>
+                <p>In an age of constant data exchange, ensuring privacy and security is paramount. This tool leverages the cutting-edge **Web Crypto API**, a modern standard built directly into your browser, to provide robust encryption without needing a server or any third-party plugins.</p>
+
+                <h3>How Does This Tool Work? The Power of AES-GCM</h3>
+                <p>This application uses **AES-GCM (Advanced Encryption Standard - Galois/Counter Mode)**, one of the most secure and widely-used symmetric encryption algorithms today. It is recommended by the National Institute of Standards and Technology (NIST) and is used to protect sensitive data across governments and industries worldwide.</p>
+
+                <h4>Key Steps in the Process:</h4>
+                <ol>
+                    <li><strong>Key Derivation (PBKDF2):</strong> Your password is not used directly as the encryption key. Instead, we use an algorithm called **PBKDF2 (Password-Based Key Derivation Function 2)**. It takes your password, adds a random element (a "salt"), and performs thousands of computational rounds. This makes it extremely difficult for attackers to guess the key, even if they have a list of common passwords (a dictionary attack).</li>
+                    <li><strong>Encryption (AES-GCM):</strong> Once a strong key is derived, the AES-GCM algorithm encrypts your text. A unique, random value called an **Initialization Vector (IV)** is generated for each encryption. This ensures that encrypting the same text with the same password will produce a different ciphertext every time, adding another layer of security.</li>
+                    <li><strong>Authentication Tag:</strong> A major advantage of AES-GCM is that it includes an **authentication tag**. This tag is a cryptographic signature that verifies the integrity and authenticity of the data. When you decrypt, if the data has been tampered with in any way, the process will fail, protecting you from corrupted or malicious data.</li>
+                    <li><strong>Decryption:</strong> To decrypt, the tool uses the same password to re-derive the exact same key. It then uses this key, along with the stored IV and authentication tag, to reverse the process and reveal the original plaintext.</li>
+                </ol>
+
+                <h3>Why In-Browser Encryption Matters</h3>
+                <ul>
+                    <li><strong>Ultimate Privacy:</strong> All cryptographic operations happen exclusively within your browser on your device. Your password and the text you process are never transmitted over the internet, offering the highest level of privacy.</li>
+                    <li><strong>Zero-Knowledge:</strong> As the developers of this tool, we have zero access to your data. We cannot see your password, your text, or the results.</li>
+                    <li><strong>Performance:</strong> Modern browsers have highly optimized implementations of the Web Crypto API, making the encryption and decryption process remarkably fast and efficient.</li>
+                </ul>
+                <p>By using this tool, you are engaging with a best-in-class security practice for protecting information on the web. It's a practical demonstration of how modern web standards are empowering users to take control of their own data privacy.</p>
+            </section>
+        </main>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
