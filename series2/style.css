@@ -1,0 +1,161 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f4f0; /* Light greenish-gray */
+    color: #333;
+    margin: 0;
+}
+
+.app-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+/* Header */
+.app-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.app-header h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 2.8rem;
+    color: #2e6b2e; /* Dark Green */
+    margin: 0;
+}
+
+.app-header p {
+    font-size: 1.2rem;
+    color: #556b55; /* Muted Green */
+}
+
+/* Main Tool Area */
+.scheduler-tool > * {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Input & Controls */
+.controls-card h2, .duration-card h2, .schedule-output-card h2 {
+    font-family: 'Merriweather', serif;
+    color: #2e6b2e;
+    margin-top: 0;
+    border-bottom: 2px solid #e8f0e8;
+    padding-bottom: 15px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.input-group input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+/* Duration Buttons */
+.duration-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.duration-btn {
+    flex-grow: 1;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #f0f4f0;
+    color: #2e6b2e;
+    border: 2px solid #d9e9d9;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.duration-btn.active, .duration-btn:hover {
+    background-color: #2e6b2e; /* Dark Green */
+    color: #ffffff;
+}
+
+/* Schedule Output */
+.schedule-list {
+    margin-top: 20px;
+}
+
+.schedule-list .placeholder {
+    color: #888;
+    font-style: italic;
+}
+
+.schedule-item {
+    padding: 15px;
+    background-color: #f9fdf9;
+    border-left: 5px solid #68a068; /* Softer Green */
+    margin-bottom: 10px;
+    border-radius: 0 8px 8px 0;
+}
+
+.schedule-item:nth-child(even) {
+    background-color: #f4faf4;
+}
+
+/* Export Section */
+.export-section {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.export-btn {
+    background-color: #2e6b2e; /* Dark Green */
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.export-btn:hover:not(:disabled) {
+    background-color: #245524; /* Darker Green */
+    transform: translateY(-2px);
+}
+
+.export-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Footer */
+.app-footer {
+    text-align: center;
+    margin-top: 50px;
+    color: #777;
+}
+
+.app-footer a {
+    color: #2e6b2e;
+    text-decoration: none;
+}
+
+.app-footer a:hover {
+    text-decoration: underline;
+}

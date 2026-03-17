@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Series #2: Plant Watering Scheduler</title>
+    <meta name="description" content="A tool to create and track a watering schedule for your plants.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Plant Watering Scheduler</h1>
+            <p>Create a custom watering schedule and never miss a day.</p>
+        </header>
+
+        <main class="scheduler-tool">
+            <div class="controls-card">
+                <h2>1. Setup Your Schedule</h2>
+                <div class="input-group">
+                    <label for="start-date">Start Watering On:</label>
+                    <input type="date" id="start-date" name="start-date">
+                </div>
+                <div class="input-group">
+                    <label for="watering-interval">Water Every (Days):</label>
+                    <input type="number" id="watering-interval" name="watering-interval" value="7" min="1">
+                </div>
+            </div>
+
+            <div class="duration-card">
+                <h2>2. View Your Schedule</h2>
+                <p>Select a duration to see the upcoming watering dates.</p>
+                <div class="duration-buttons">
+                    <button class="duration-btn active" data-months="1">1 Month</button>
+                    <button class="duration-btn" data-months="3">3 Months</button>
+                    <button class="duration-btn" data-months="6">6 Months</button>
+                    <button class="duration-btn" data-months="12">12 Months</button>
+                </div>
+            </div>
+
+            <div id="schedule-output" class="schedule-output-card">
+                <h2>Upcoming Watering Dates</h2>
+                <div id="schedule-list" class="schedule-list">
+                    <p class="placeholder">Your schedule will appear here once generated.</p>
+                </div>
+                <div class="export-section">
+                     <button id="export-calendar-btn" class="export-btn" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 10H7v2h10v-2zm2-7h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm-5-5H7v2h7v-2z"/></svg>
+                        <span>Add to My Calendar</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; 2024 flwllxkal-eng. All Rights Reserved. | <a href="../">Back to Hub</a></p>
+        </footer>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -11,25 +11,32 @@ This multi-page structure allows for a content-rich introduction on the main pag
 ### Main Dev Log (Root: `/`)
 
 *   **Purpose:** To serve as a personal development blog and an introduction to the owner's work and project series.
-*   **Internationalization (i18n):** All content has been translated to English for a global audience. No personal information is displayed.
-*   **Content:** Introduces flwllxkal-eng, explains the purpose of the site as a space to document technological exploration and project development, and outlines future plans.
-*   **Layout:** A clean, professional blog-style layout that prioritizes readability. It includes a dedicated section at the bottom for directing users to the various project series.
-*   **Styling:** Uses the 'Roboto' font for excellent readability in English. The design is content-focused, clean, and modern.
-*   **Structure:** Comprises a main header with a title and subtitle, a main content body for the introduction and plans, a distinct "My Project Series" section with card-based navigation, and a footer.
+*   **Internationalization (i18n):** All content is in English for a global audience.
+*   **Content:** Introduces flwllxkal-eng, explains the purpose of the site, and outlines future plans.
+*   **Layout:** A clean, professional blog-style layout that prioritizes readability.
+*   **Styling:** Uses the 'Roboto' font for excellent readability in English.
+*   **Structure:** Includes a header, a main content body, a card-based navigation section for project series, and a footer.
 
 ### Series #1: Password Generator (`/series1/`)
 
 *   **Functionality:** A sophisticated and user-friendly password generator web application.
-*   **Internationalization (i18n):** All content is in English to target a global user base.
-*   **SEO & Discoverability:** Includes a keywords section, semantic HTML, and a meta description.
-*   **Advanced Password Generation:** Creates random, strong passwords (8-12 characters) with a guaranteed mix of character types.
-*   **Modern & Secure UI:** Features a dark mode theme, responsive design, interactive elements, and professional typography.
-*   **Educational Content:** Provides users with the "Golden Rules" of password security.
-*   **Secure Copy-to-Clipboard:** Uses the modern `navigator.clipboard.writeText()` API.
+*   **Internationalization (i18n):** All content is in English.
+*   **Advanced Password Generation:** Creates random, strong passwords.
+*   **Modern & Secure UI:** Features a dark mode theme, responsive design, and interactive elements.
+
+### Series #2: Plant Watering Scheduler (`/series2/`)
+
+*   **Functionality:** A tool to create and track a watering schedule for plants.
+*   **Core Features:**
+    *   **Start Date Selection:** Users can pick any start date from a calendar.
+    *   **Custom Interval:** Users can define how many days are between each watering.
+    *   **Variable Duration:** View the schedule for 1, 3, 6, or 12 months.
+    *   **Calendar Export:** Users can download an `.ics` file to import the schedule into their own calendar (e.g., Google Calendar, Apple Calendar).
+*   **Design:** A beautiful and intuitive plant-themed design that is clean, responsive, and easy to use.
 
 ## Current Plan
 
-*   **Internationalize Main Page:** Translated all content on the main page to English and removed any personal information. (Completed)
-    *   Switched the primary font to 'Roboto' for better readability. (Completed)
-*   **Refactor Main Page:** Changed the purpose and structure of the main page from a simple hub to a development log and introductory page. (Completed)
-*   **Update Blueprint:** Documented all recent changes in this blueprint. (Completed)
+*   **Create Series #2:** Developed the Plant Watering Scheduler application. (Completed)
+    *   Created the HTML structure, CSS styles, and JavaScript logic. (Completed)
+    *   Added a link to the new series on the main hub page. (Completed)
+    *   Updated this blueprint to document the new project. (Completed)
