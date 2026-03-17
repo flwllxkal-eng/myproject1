@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Get references to DOM elements
     const startDateInput = document.getElementById('start-date');
-    const intervalInput = document.getElementById('watering-interval');
+    const intervalInput = document.getElementById('watering-interval'); // Hidden input
+    const intervalButtons = document.querySelectorAll('.interval-btn');
     const durationButtons = document.querySelectorAll('.duration-btn');
     const scheduleList = document.getElementById('schedule-list');
     const exportBtn = document.getElementById('export-calendar-btn');
@@ -45,19 +46,19 @@ document.addEventListener('DOMContentLoaded', () => {
         exportBtn.disabled = schedule.length === 0;
     };
 
-    // Function to display the schedule
+    // Function to display the schedule in English
     const displaySchedule = (schedule) => {
         scheduleList.innerHTML = ''; // Clear previous results
         if (schedule.length === 0) {
-            scheduleList.innerHTML = '<p class="placeholder">No watering dates in this period.</p>';
+            scheduleList.innerHTML = '<p class="placeholder">No watering dates in this period.</p>'
             return;
         }
 
         schedule.forEach(date => {
             const item = document.createElement('div');
             item.className = 'schedule-item';
-            // Use toLocaleDateString for a more readable, localized date format
-            item.textContent = date.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            // Force English (US) format for the date
+            item.textContent = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
             scheduleList.appendChild(item);
         });
     };
@@ -66,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const exportToCalendar = () => {
         if (wateringEvents.length === 0) return;
 
-        // Using a more robust method for creating ICS content
         let icsContent = [
             'BEGIN:VCALENDAR',
             'VERSION:2.0',
@@ -104,15 +104,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Event Listeners ---
     startDateInput.addEventListener('change', calculateSchedule);
-    intervalInput.addEventListener('input', calculateSchedule); // Use 'input' for more responsive feedback
+
+    intervalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            intervalButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            intervalInput.value = button.dataset.interval; // Update hidden input
+            calculateSchedule();
+        });
+    });
 
     durationButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Remove active class from all buttons
             durationButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to the clicked button
             button.classList.add('active');
-            // Recalculate the schedule
             calculateSchedule();
         });
     });

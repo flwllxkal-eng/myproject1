@@ -50,33 +50,38 @@ body {
 
 .input-group {
     margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
+}
+
+.input-group:last-child {
+    margin-bottom: 0;
 }
 
 .input-group label {
     font-weight: bold;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     color: #555;
+    display: block;
 }
 
-.input-group input {
+.input-group input[type="date"] {
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* Duration Buttons */
-.duration-buttons {
+/* Interval & Duration Buttons */
+.interval-buttons, .duration-buttons {
     display: flex;
-    gap: 15px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
-.duration-btn {
+.interval-btn, .duration-btn {
     flex-grow: 1;
-    padding: 12px 20px;
+    padding: 12px 15px;
     font-size: 1rem;
     font-weight: bold;
     background-color: #f0f4f0;
@@ -84,12 +89,15 @@ body {
     border: 2px solid #d9e9d9;
     border-radius: 8px;
     cursor: pointer;
+    text-align: center;
     transition: background-color 0.2s, color 0.2s;
 }
 
+.interval-btn.active, .interval-btn:hover,
 .duration-btn.active, .duration-btn:hover {
     background-color: #2e6b2e; /* Dark Green */
     color: #ffffff;
+    border-color: #2e6b2e;
 }
 
 /* Schedule Output */
@@ -143,6 +151,13 @@ body {
 .export-btn:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
+}
+
+.export-note {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 15px;
+    font-style: italic;
 }
 
 /* Content Guide Section */
