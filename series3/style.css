@@ -1,0 +1,171 @@
+body {
+    font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.app-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+/* Header */
+.app-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.app-header h1 {
+    font-size: 2.8rem;
+    color: #005a9c; /* Deep Blue */
+    margin: 0;
+}
+
+.app-header p {
+    font-size: 1.2rem;
+    color: #5a7d9c;
+}
+
+/* Converter & Content Cards */
+.converter-tool > *, .content-guide {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #e9eff3;
+    margin-bottom: 25px;
+}
+
+.tab-btn {
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    color: #5a7d9c;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: -2px; /* Align with parent border */
+}
+
+.tab-btn.active {
+    color: #005a9c;
+    border-bottom-color: #005a9c;
+}
+
+.tab-btn:hover {
+    background-color: #f4f7f6;
+}
+
+/* Converter Section */
+.converter-section {
+    display: none;
+}
+
+.converter-section.active {
+    display: block;
+}
+
+.input-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.input-group {
+    flex: 1;
+    min-width: 150px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.input-group input[type="number"], .input-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #fdfdfd;
+}
+
+.equals-sign {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #005a9c;
+    padding-bottom: 10px;
+}
+
+.result-area {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #e9f5ff;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.result-area p {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #005a9c;
+}
+
+/* Content Guide Section */
+.content-guide h2, .content-guide h3, .content-guide h4 {
+    color: #005a9c;
+    border-bottom: 2px solid #e9eff3;
+    padding-bottom: 10px;
+    margin-top: 25px;
+}
+
+.content-guide p,
+.content-guide li {
+    color: #444;
+    font-size: 1.05rem;
+}
+
+.content-guide ol,
+.content-guide ul {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.content-guide .disclaimer {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #fffbe6;
+    border-left: 5px solid #f0ad4e; /* Warning yellow */
+    font-style: italic;
+}
+
+/* Footer */
+.app-footer {
+    text-align: center;
+    margin-top: 50px;
+    color: #777;
+}
+
+.app-footer a {
+    color: #005a9c;
+    text-decoration: none;
+}
+
+.app-footer a:hover {
+    text-decoration: underline;
+}
