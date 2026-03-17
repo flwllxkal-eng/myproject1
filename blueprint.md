@@ -39,28 +39,38 @@ This document outlines the development plan and features for a series of AI-powe
 
 *   **Objective:** Build a blog-style page with a real-time currency conversion tool.
 *   **Features:**
-    *   **Real-Time Exchange Rates:** Fetches the latest currency exchange rates from the reliable `frankfurter.app` API (which sources from the European Central Bank).
-    *   **User-Friendly Interface:** Utilizes the clean design and layout from Series #3 for a consistent user experience. Users can input an amount and select 'from' and 'to' currencies from a dropdown.
-    *   **No API Key Required:** Leverages an open API, removing the need for user sign-up or key management.
-    *   **AdSense-Optimized Content:** Includes a detailed, high-quality article explaining how to use the tool, the importance of currency conversion for travelers, online shoppers, and businesses, and information about the data source. This is designed to meet Google AdSense content quality guidelines.
-    *   **Dynamic & Responsive:** The tool provides instant conversion results and the entire page is fully responsive for both mobile and desktop devices.
-*   **Tech Stack:** HTML, CSS, JavaScript with `fetch` API for asynchronous requests.
+    *   **Real-Time Exchange Rates:** Fetches the latest currency exchange rates from the reliable `frankfurter.app` API.
+    *   **User-Friendly Interface:** Clean design where users can input an amount and select 'from' and 'to' currencies.
+    *   **AdSense-Optimized Content:** Includes a detailed, high-quality article for AdSense approval.
+    *   **Dynamic & Responsive:** The tool provides instant conversion results and the entire page is fully responsive.
+*   **Tech Stack:** HTML, CSS, JavaScript with `fetch` API.
+
+## Series #5: Advanced Case Converter
+
+*   **Objective:** Develop a comprehensive tool for text case conversion.
+*   **Features:**
+    *   **Multiple Conversion Options:** Supports UPPERCASE, lowercase, Sentence case, and Title Case.
+    *   **Instant Conversion:** Text is converted in real-time as the user types or changes the conversion option.
+    *   **Copy to Clipboard:** A dedicated button allows users to copy the converted text with a single click.
+    *   **Clear & Intuitive UI:** A simple layout with a textarea for input, radio buttons for conversion selection, and a clear display for the output.
+    *   **In-depth Content:** Provides a detailed explanation of what case conversion is, why it's useful (for developers, writers, data analysts), and how each conversion type works. The content will be written to a high standard to meet Google AdSense guidelines.
+    *   **Usage Guide:** A "How to Use" section will provide simple, step-by-step instructions.
+*   **Tech Stack:** HTML, CSS, JavaScript (ES Modules).
 
 ---
 
-### **Current Request Plan**
+### **Current Request Plan: Series #5**
 
-1.  **Create `series4` Directory:** Set up a new directory for the fourth project.
+1.  **Create `series5` Directory:** Set up a new directory for the fifth project.
 2.  **Develop `index.html`:**
-    *   Structure the page with a header, the currency converter tool, and a detailed content section.
-    *   Write comprehensive, original content to explain the tool and its use cases, targeting AdSense approval.
+    *   Structure the page with a header, the case converter tool, and detailed "How to Use" and "About Case Conversion" sections.
+    *   Write comprehensive, original, and high-quality English content to explain the tool's functionality and importance, aiming for AdSense approval.
 3.  **Develop `style.css`:**
-    *   Copy the styles from `series3` to ensure a consistent and high-quality design, making minor adjustments as needed.
+    *   Adapt styles from previous series to maintain a consistent, professional design.
+    *   Ensure the layout is clean, responsive, and user-friendly.
 4.  **Develop `main.js`:**
-    *   Implement the core logic for the currency converter.
-    *   Use the `fetch` API to communicate with `https://api.frankfurter.app/`.
-    *   Write a function to dynamically populate the currency selection dropdowns.
-    *   Write a function to calculate and display the converted amount based on user input.
-    *   Add event listeners to trigger conversions in real-time.
-5.  **Git Integration:** Add all new files to a new commit.
-
+    *   Implement the logic for text conversion (UPPERCASE, lowercase, etc.).
+    *   Add event listeners to the textarea and radio buttons to trigger real-time conversion.
+    *   Implement the "Copy to Clipboard" functionality.
+5.  **Update Main `index.html`:** Add a new card to the main navigation to link to the "Case Converter" series.
+6.  **Git Integration:** Commit all new files with a descriptive message ("feat: Initialize Series #5 - Case Converter") and push to the remote repository.
