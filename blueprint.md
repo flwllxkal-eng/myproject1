@@ -11,9 +11,10 @@ This multi-page structure allows for a content-rich introduction on the main pag
 ### Main Dev Log (Root: `/`)
 
 *   **Purpose:** To serve as a personal development blog and an introduction to the owner's work and project series.
-*   **Content:** Introduces flwllxkal-eng, explains the purpose of the site as a space to document technological exploration and project development, and outlines future plans. The problematic external blog link has been removed.
+*   **Internationalization (i18n):** All content has been translated to English for a global audience. No personal information is displayed.
+*   **Content:** Introduces flwllxkal-eng, explains the purpose of the site as a space to document technological exploration and project development, and outlines future plans.
 *   **Layout:** A clean, professional blog-style layout that prioritizes readability. It includes a dedicated section at the bottom for directing users to the various project series.
-*   **Styling:** Uses the 'Noto Sans KR' font for high readability. The design is content-focused, clean, and modern.
+*   **Styling:** Uses the 'Roboto' font for excellent readability in English. The design is content-focused, clean, and modern.
 *   **Structure:** Comprises a main header with a title and subtitle, a main content body for the introduction and plans, a distinct "My Project Series" section with card-based navigation, and a footer.
 
 ### Series #1: Password Generator (`/series1/`)
@@ -28,9 +29,7 @@ This multi-page structure allows for a content-rich introduction on the main pag
 
 ## Current Plan
 
+*   **Internationalize Main Page:** Translated all content on the main page to English and removed any personal information. (Completed)
+    *   Switched the primary font to 'Roboto' for better readability. (Completed)
 *   **Refactor Main Page:** Changed the purpose and structure of the main page from a simple hub to a development log and introductory page. (Completed)
-    *   Removed the confusing external blog link and made the main page the central point of content. (Completed)
-    *   Added descriptive content about the owner's work and future plans. (Completed)
-    *   Created a dedicated section at the bottom to navigate to project series. (Completed)
-*   **Update Styling:** Redesigned the CSS to fit the new blog-style, content-focused layout. (Completed)
-*   **Update Blueprint:** Documented the new main page concept and structure in this blueprint. (Completed)
+*   **Update Blueprint:** Documented all recent changes in this blueprint. (Completed)
