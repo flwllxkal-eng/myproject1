@@ -24,33 +24,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Unit Definitions ---
     const units = {
         length: {
-            'mm': { name: '밀리미터 (mm)', to_base: 0.001 },
-            'cm': { name: '센티미터 (cm)', to_base: 0.01 },
-            'm': { name: '미터 (m)', to_base: 1 },
-            'km': { name: '킬로미터 (km)', to_base: 1000 },
-            'in': { name: '인치 (inch)', to_base: 0.0254 },
-            'ft': { name: '피트 (ft)', to_base: 0.3048 },
-            'yd': { name: '야드 (yd)', to_base: 0.9144 },
-            'mi': { name: '마일 (mi)', to_base: 1609.34 },
-            '리': { name: '리 (里, 한국)', to_base: 3927.27 }, // 약 3.9km
-            '자': { name: '자 (尺, 한국)', to_base: 0.303 }, // 약 30.3cm
+            'mm': { name: 'Millimeter (mm)', to_base: 0.001 },
+            'cm': { name: 'Centimeter (cm)', to_base: 0.01 },
+            'm': { name: 'Meter (m)', to_base: 1 },
+            'km': { name: 'Kilometer (km)', to_base: 1000 },
+            'in': { name: 'Inch (in)', to_base: 0.0254 },
+            'ft': { name: 'Foot (ft)', to_base: 0.3048 },
+            'yd': { name: 'Yard (yd)', to_base: 0.9144 },
+            'mi': { name: 'Mile (mi)', to_base: 1609.34 },
+            'li': { name: 'Li (Korean)', to_base: 3927.27 }, // Approx 3.9km
+            'ja': { name: 'Ja (Korean)', to_base: 0.303 }, // Approx 30.3cm
         },
         weight: {
-            'mg': { name: '밀리그램 (mg)', to_base: 0.001 },
-            'g': { name: '그램 (g)', to_base: 1 },
-            'kg': { name: '킬로그램 (kg)', to_base: 1000 },
-            't': { name: '톤 (t)', to_base: 1000000 },
-            'oz': { name: '온스 (oz)', to_base: 28.3495 },
-            'lb': { name: '파운드 (lb)', to_base: 453.592 },
-            '근': { name: '근 (斤, 한국)', to_base: 600 }, // 보통 600g
-            '돈': { name: '돈 (돈, 한국)', to_base: 3.75 }, // 금 단위
-            'pood': { name: '푸드 (pood, 러시아)', to_base: 16380 }, // 약 16.38kg
+            'mg': { name: 'Milligram (mg)', to_base: 0.001 },
+            'g': { name: 'Gram (g)', to_base: 1 },
+            'kg': { name: 'Kilogram (kg)', to_base: 1000 },
+            't': { name: 'Tonne (t)', to_base: 1000000 },
+            'oz': { name: 'Ounce (oz)', to_base: 28.3495 },
+            'lb': { name: 'Pound (lb)', to_base: 453.592 },
+            'geun': { name: 'Geun (Korean)', to_base: 600 }, // Typically 600g
+            'don': { name: 'Don (Korean)', to_base: 3.75 }, // Gold unit
+            'pood': { name: 'Pood (Russian)', to_base: 16380 }, // Approx 16.38kg
         },
-        // 온도 변환은 공식이 다르므로 별도 처리
+        // Temperature conversion is handled separately
         temperature: {
-            'C': { name: '섭씨 (°C)' },
-            'F': { name: '화씨 (°F)' },
-            'K': { name: '절대온도 (K)' },
+            'C': { name: 'Celsius (°C)' },
+            'F': { name: 'Fahrenheit (°F)' },
+            'K': { name: 'Kelvin (K)' },
         }
     };
 
@@ -64,6 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const fromSelect = selects[type].from;
             const toSelect = selects[type].to;
             const unitGroup = units[type];
+
+            // Clear existing options
+            fromSelect.innerHTML = '';
+            toSelect.innerHTML = '';
 
             for (const unit in unitGroup) {
                 const option = document.createElement('option');
@@ -97,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const toUnit = selects[activeType].to.value;
 
         if (isNaN(value)) {
-            results[activeType].textContent = '유효한 숫자를 입력하세요.';
+            results[activeType].textContent = 'Please enter a valid number.';
             return;
         }
         
