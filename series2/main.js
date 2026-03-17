@@ -1,11 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Get references to DOM elements
     const startDateInput = document.getElementById('start-date');
-    const intervalInput = document.getElementById('watering-interval'); // Hidden input
-    const intervalButtons = document.querySelectorAll('.interval-btn');
+    const intervalSelect = document.getElementById('watering-interval');
     const durationButtons = document.querySelectorAll('.duration-btn');
     const scheduleList = document.getElementById('schedule-list');
     const exportBtn = document.getElementById('export-calendar-btn');
+
+    // --- Initial Setup ---
+
+    // Populate the interval dropdown with options from 1 to 100
+    for (let i = 1; i <= 100; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = i;
+        if (i === 7) {
+            option.selected = true; // Set 7 as the default
+        }
+        intervalSelect.appendChild(option);
+    }
 
     // Set default start date to today
     const today = new Date();
@@ -13,10 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let wateringEvents = [];
 
+    // --- Core Functions ---
+
     // Function to calculate watering dates
     const calculateSchedule = () => {
-        const startDate = new Date(startDateInput.value + 'T00:00:00'); // Use specific time to avoid timezone issues
-        const interval = parseInt(intervalInput.value, 10);
+        const startDate = new Date(startDateInput.value + 'T00:00:00'); // Use T00:00:00 to prevent timezone issues
+        const interval = parseInt(intervalSelect.value, 10);
         const activeDurationBtn = document.querySelector('.duration-btn.active');
         const months = parseInt(activeDurationBtn.dataset.months, 10);
 
@@ -46,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         exportBtn.disabled = schedule.length === 0;
     };
 
-    // Function to display the schedule in English
+    // Function to display the schedule, ensuring dates are in English
     const displaySchedule = (schedule) => {
         scheduleList.innerHTML = ''; // Clear previous results
         if (schedule.length === 0) {
@@ -103,16 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- Event Listeners ---
-    startDateInput.addEventListener('change', calculateSchedule);
 
-    intervalButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            intervalButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            intervalInput.value = button.dataset.interval; // Update hidden input
-            calculateSchedule();
-        });
-    });
+    startDateInput.addEventListener('change', calculateSchedule);
+    intervalSelect.addEventListener('change', calculateSchedule);
 
     durationButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -124,6 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     exportBtn.addEventListener('click', exportToCalendar);
 
-    // Initial calculation on page load
+    // --- Initial Calculation ---
+
+    // Calculate the schedule on page load with the default values
     calculateSchedule();
 });

@@ -63,23 +63,24 @@ body {
     display: block;
 }
 
-.input-group input[type="date"] {
+.input-group input[type="date"], .input-group select {
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
     width: 100%;
     box-sizing: border-box;
+    background-color: white;
 }
 
-/* Interval & Duration Buttons */
-.interval-buttons, .duration-buttons {
+/* Duration Buttons */
+.duration-buttons {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
 }
 
-.interval-btn, .duration-btn {
+.duration-btn {
     flex-grow: 1;
     padding: 12px 15px;
     font-size: 1rem;
@@ -93,7 +94,6 @@ body {
     transition: background-color 0.2s, color 0.2s;
 }
 
-.interval-btn.active, .interval-btn:hover,
 .duration-btn.active, .duration-btn:hover {
     background-color: #2e6b2e; /* Dark Green */
     color: #ffffff;
