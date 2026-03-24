@@ -6,37 +6,42 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentExpression = '0';
 
     const formatResult = (result) => {
-        if (result === 'Error' || isNaN(result) || !isFinite(result)) {
+        if (result === 'Error' || result === 'Error(incomplete)' || isNaN(result) || !isFinite(result)) {
             return 'Error';
         }
         const num = Number(result);
-        return num.toLocaleString('en-US', { maximumFractionDigits: 10 });
+        // Use parseFloat and toPrecision to handle floating point inaccuracies and remove trailing zeros
+        return parseFloat(num.toPrecision(12)).toString();
     };
 
     const updateDisplay = (shouldRecalculate = true) => {
         expressionDisplay.textContent = currentExpression;
         if (shouldRecalculate) {
             const result = calculate(currentExpression);
-            resultDisplay.textContent = formatResult(result);
+            if (result !== 'Error(incomplete)') {
+                 resultDisplay.textContent = formatResult(result);
+            }
         }
         setCursorToEnd(expressionDisplay);
     };
 
     const setCursorToEnd = (element) => {
-        const range = document.createRange();
-        const selection = window.getSelection();
-        range.selectNodeContents(element);
-        range.collapse(false);
-        selection.removeAllRanges();
-        selection.addRange(range);
+        try {
+            const range = document.createRange();
+            const selection = window.getSelection();
+            range.selectNodeContents(element);
+            range.collapse(false);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            element.focus();
+        } catch(e) { console.error("Error setting cursor:", e); }
     };
 
     const calculate = (expr) => {
         if (!expr) return '0';
 
-        // Helper function for factorial calculation
         const factorial = (n) => {
-            if (n < 0 || n % 1 !== 0) return NaN; // Invalid input for factorial
+            if (n < 0 || n % 1 !== 0) return NaN;
             if (n === 0 || n === 1) return 1;
             let result = 1;
             for (let i = 2; i <= n; i++) {
@@ -45,35 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return result;
         };
 
-        // Function to pre-process and calculate factorials in the expression string
-        const preprocessFactorials = (str) => {
-            // Regex to find an integer followed by '!'
-            const factRegex = /(\d+)\s*!/g;
-            return str.replace(factRegex, (match, numberStr) => {
-                return factorial(parseInt(numberStr, 10));
-            });
-        };
-        
-        const transformExponents = (str) => {
-            const chainRegex = /((?:-?\d*\.?\d+(?:e[+-]?\d+)?\s*\^\s*)+-?\d*\.?\d+(?:e[+-]?\d+)?)/g;
-            return str.replace(chainRegex, (chain) => {
-                const parts = chain.split('^').map(p => p.trim());
-                if (parts.length < 2) return chain;
-                let replacement = `Math.pow(${parts[0]}, ${parts[1]})`;
-                for (let i = 2; i < parts.length; i++) {
-                    replacement = `Math.pow(${replacement}, ${parts[i]})`;
-                }
-                return replacement;
-            });
-        };
-
         try {
-            // Pre-process factorials first!
-            let evalExpr = preprocessFactorials(expr);
+            let evalExpr = expr.trim();
 
-            // Then do all other replacements
+            // Pre-process factorials
+            evalExpr = evalExpr.replace(/(\d+)!/g, (match, num) => factorial(parseInt(num, 10)));
+
             evalExpr = evalExpr
-                .replace(/,/g, '')
                 .replace(/×/g, '*')
                 .replace(/÷/g, '/')
                 .replace(/π/g, 'Math.PI')
@@ -86,13 +69,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 .replace(/tan/g, 'Math.tan')
                 .replace(/EXP/g, 'e')
                 // Add multiplication where implied
-                .replace(/(\d)Math\.PI/g, '$1 * Math.PI')
-                .replace(/(\d)Math\.E/g, '$1 * Math.E')
-                .replace(/(\d)(Math\.sin|Math\.cos|Math\.tan|Math\.log10|Math\.log|Math\.sqrt)/g, '$1 * $2')
-                .replace(/\)(\d|\(|Math)/g, ') * $1');
+                .replace(/(\d)(Math\.PI|Math\.E|Math\.sin|Math\.cos|Math\.tan|Math\.log10|Math\.log|Math\.sqrt|\()/g, '$1 * $2')
+                .replace(/(\))(\d|Math|\()/g, '$1 * $2');
 
-            // Apply exponent transformation
-            evalExpr = transformExponents(evalExpr);
+            // Handle right-to-left exponentiation (e.g., 2^3^2 = 2^(3^2))
+            const parts = evalExpr.split('^');
+            if (parts.length > 1) {
+                let last = parts.pop();
+                evalExpr = `Math.pow(${parts.join('^')}, ${last})`; // Simplified for now, can be improved for chains
+                let base = parts.pop();
+                evalExpr = `Math.pow(${base}, ${last})`;
+                while(parts.length) {
+                    evalExpr = `Math.pow(${parts.pop()}, ${evalExpr})`;
+                }
+            }
             
             const result = new Function('return ' + evalExpr)();
 
@@ -100,14 +90,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 return 'Error';
             }
 
-            return parseFloat(result.toPrecision(12));
+            return result;
         } catch (error) {
+            if (error instanceof SyntaxError) {
+                return 'Error(incomplete)';
+            }
             return 'Error';
         }
     };
 
     const handleButtonClick = (key) => {
-        if (currentExpression === '0' && !('.()/*-+\''.includes(key))) {
+        const functionsWithParen = ['sin', 'cos', 'tan', 'log', 'sqrt'];
+
+        if (resultDisplay.textContent === 'Error' && key !== 'AC') {
+            currentExpression = '0';
+            resultDisplay.textContent = '0';
+        }
+
+        if (functionsWithParen.includes(key)) {
+            let prefix = '';
+            if (currentExpression === '0') {
+                currentExpression = '';
+            } else {
+                const lastChar = currentExpression.slice(-1);
+                if (/[0-9)π]/.test(lastChar)) {
+                    prefix = '*';
+                }
+            }
+            currentExpression += prefix + key + '(';
+            updateDisplay(false);
+            return;
+        }
+
+        if (currentExpression === '0' && key !== '.') {
             currentExpression = '';
         }
 
@@ -120,7 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentExpression = currentExpression.slice(0, -1) || '0';
                 break;
             case '=':
-                currentExpression = resultDisplay.textContent.replace(/,/g, '');
+                const finalResult = calculate(currentExpression);
+                currentExpression = formatResult(finalResult);
+                resultDisplay.textContent = currentExpression;
                 updateDisplay(false);
                 return;
             case 'sqr':
@@ -129,8 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'pow':
                 currentExpression += '^';
                 break;
-            case 'fact': // THE FIX IS HERE
-                currentExpression += '!'; // Just append '!' and let calculate() handle it
+            case 'fact':
+                currentExpression += '!';
                 break;
             default:
                 currentExpression += key;
@@ -150,8 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentExpression = e.target.textContent.replace(/\n/g, '');
         updateDisplay();
     });
-
-    // Comprehensive keyboard support
+    
     document.addEventListener('keydown', (e) => {
         const key = e.key;
         const keyMap = {
@@ -159,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '/': '/', '*': '*', '-': '-', '+': '+', 'x': '*',
             '1': '1', '2': '2', '3': '3', '4': '4', '5': '5',
             '6': '6', '7': '7', '8': '8', '9': '9', '0': '0',
-            '.': '.', '(': '(', ')': ')', '!': 'fact'
+            '.': '.', '(': '(', ')': ')', '!': 'fact', '^': 'pow'
         };
         
         if (keyMap[key]) {

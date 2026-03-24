@@ -90,8 +90,7 @@ h1 { font-family: 'Orbitron', sans-serif; color: #1c2a39; font-size: 2.5rem; }
     background: #2ecc71;
     color: #fff;
     font-size: 1.5rem;
-    /* Making it span 2 columns on the right for balance */
-    grid-column: 5 / 7;
+    /* The problematic style is now removed. */
 }
 .btn.equals:hover { background-color: #27ae60; }
 
