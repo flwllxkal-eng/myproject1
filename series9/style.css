@@ -1,0 +1,183 @@
+:root {
+    --bg-color: #f0f2f5;
+    --font-color: #333;
+    --header-font-color: #1a237e;
+    --calculator-bg: #ffffff;
+    --display-bg: #e3eaf2;
+    --display-font-color: #212121;
+    --btn-bg: #fafafa;
+    --btn-hover-bg: #f1f3f4;
+    --operator-btn-bg: #e8f0fe;
+    --operator-btn-color: #1967d2;
+    --func-btn-bg: #fce8e6;
+    --func-btn-color: #c5221f;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 800px;
+    background-color: var(--calculator-bg);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.app-header h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 2.5em;
+    color: var(--header-font-color);
+    margin: 0;
+}
+
+.app-header p {
+    font-size: 1.1em;
+    color: #5f6368;
+}
+
+.calculator-body {
+    display: flex;
+    justify-content: center;
+}
+
+.calculator {
+    width: 100%;
+    max-width: 360px;
+    background: var(--calculator-bg);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.display {
+    font-family: 'Orbitron', sans-serif;
+    background-color: var(--display-bg);
+    color: var(--display-font-color);
+    font-size: 2.8em;
+    padding: 20px;
+    text-align: right;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.btn {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    font-weight: 500;
+    padding: 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--btn-bg);
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.btn:hover {
+    background-color: var(--btn-hover-bg);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.btn.operator {
+    background-color: var(--operator-btn-bg);
+    color: var(--operator-btn-color);
+    font-weight: bold;
+}
+
+.btn.func {
+    background-color: var(--func-btn-bg);
+    color: var(--func-btn-color);
+    font-size: 1.2em;
+}
+
+#equals {
+    grid-column: span 1; /* Default to 1 span */
+    background-color: #4285f4;
+    color: white;
+}
+
+.instructions {
+    margin-top: 40px;
+    padding: 20px;
+    background: #fafafa;
+    border-radius: 8px;
+}
+
+.instructions h2 {
+    border-bottom: 2px solid var(--header-font-color);
+    padding-bottom: 10px;
+    color: var(--header-font-color);
+}
+
+.instructions ul {
+    padding-left: 20px;
+}
+
+.instructions li {
+    margin-bottom: 10px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #1967d2;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .app-container {
+        padding: 20px;
+    }
+    
+    .buttons {
+        gap: 10px;
+    }
+
+    .btn {
+        font-size: 1.2em;
+        padding: 15px;
+    }
+
+    .display {
+        font-size: 2.2em;
+    }
+}
