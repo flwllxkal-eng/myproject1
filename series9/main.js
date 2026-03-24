@@ -1,105 +1,113 @@
 document.addEventListener('DOMContentLoaded', () => {
     const display = document.getElementById('display');
-    const buttons = document.querySelector('.buttons');
+    const modeIndicator = document.getElementById('mode-indicator');
+    const buttonsGrid = document.querySelector('.buttons-grid');
 
     let currentExpression = '0';
+    let memory = 0;
+    let isRadian = false; // false for Degree, true for Radian
 
-    function updateDisplay() {
+    const updateDisplay = () => {
         display.textContent = currentExpression;
-    }
+        modeIndicator.textContent = isRadian ? 'RAD' : 'DEG';
+    };
 
-    function calculate(expression) {
-        // Replace user-facing operators with JS-compatible versions
-        let safeExpression = expression
-            .replace(/×/g, '*')
-            .replace(/÷/g, '/')
-            .replace(/π/g, 'Math.PI')
-            .replace(/√/g, 'Math.sqrt')
-            .replace(/\^/g, '**'); // For x^y
+    const factorial = (n) => {
+        if (n < 0) return 'Error';
+        if (n === 0) return 1;
+        let result = 1;
+        for (let i = n; i > 0; i--) {
+            result *= i;
+        }
+        return result;
+    };
 
-        // Handle log and ln
-        safeExpression = safeExpression.replace(/log/g, 'Math.log10').replace(/ln/g, 'Math.log');
-
-        // Handle trigonometric functions (sin, cos, tan)
-        safeExpression = safeExpression.replace(/(sin|cos|tan)/g, 'Math.$1');
-
+    const calculate = (expr) => {
         try {
-            // Using the Function constructor for safer evaluation
-            const result = new Function('return ' + safeExpression)();
-            
-            if (isNaN(result) || !isFinite(result)) {
-                return 'Error: Invalid Calculation';
-            }
-            
-            // Round to avoid floating point inaccuracies
-            return Math.round(result * 1e12) / 1e12;
+            let evalExpr = expr
+                .replace(/×/g, '*')
+                .replace(/÷/g, '/')
+                .replace(/π/g, 'Math.PI')
+                .replace(/e/g, 'Math.E')
+                .replace(/\^/g, '**')
+                .replace(/√/g, 'Math.sqrt')
+                .replace(/log/g, 'Math.log10')
+                .replace(/ln/g, 'Math.log')
+                .replace(/EXP/g, 'e');
+
+            // Handle trig functions with degree/radian conversion
+            evalExpr = evalExpr.replace(/(sin|cos|tan)\(([^)]+)\)/g, (match, func, val) => {
+                let angle = calculate(val);
+                if (!isRadian) {
+                    angle = angle * (Math.PI / 180); // Convert to radians
+                }
+                return `Math.${func}(${angle})`;
+            });
+
+            const result = new Function('return ' + evalExpr)();
+            if (isNaN(result) || !isFinite(result)) return 'Error';
+            return Math.round(result * 1e12) / 1e12; // Round for precision
+
         } catch (error) {
-            console.error("Calculation Error:", error);
             return 'Error';
         }
-    }
+    };
 
-    buttons.addEventListener('click', (event) => {
+    buttonsGrid.addEventListener('click', (event) => {
         if (!event.target.classList.contains('btn')) return;
 
         const key = event.target.dataset.key;
-        
-        if (currentExpression === 'Error' || currentExpression === 'Error: Invalid Calculation') {
-            currentExpression = '0';
-        }
+
+        if (currentExpression === 'Error') currentExpression = '0';
 
         switch (key) {
-            case 'AC':
-                currentExpression = '0';
-                break;
+            // Clear & Deletion
+            case 'AC': currentExpression = '0'; break;
             case 'DEL':
-                if (currentExpression.length > 1) {
-                    currentExpression = currentExpression.slice(0, -1);
-                } else {
-                    currentExpression = '0';
-                }
+                currentExpression = currentExpression.length > 1 ? currentExpression.slice(0, -1) : '0';
                 break;
+
+            // Core Calculation
             case '=':
-                if (currentExpression) {
-                    currentExpression = String(calculate(currentExpression));
-                }
-                break;
-            case 'sqr':
-                currentExpression = `(${currentExpression})**2`;
                 currentExpression = String(calculate(currentExpression));
                 break;
-            case 'pow': // Represents x^y
-                 if (currentExpression === '0') currentExpression = '';
-                 currentExpression += '^';
-                 break;
-            case 'sqrt':
+
+            // Memory Functions
+            case 'mc': memory = 0; break;
+            case 'mr': currentExpression = String(memory); break;
+            case 'm+': memory += (calculate(currentExpression) || 0); currentExpression = '0'; break;
+            case 'm-': memory -= (calculate(currentExpression) || 0); currentExpression = '0'; break;
+
+            // Mode & Constants
+            case 'deg': isRadian = !isRadian; break;
+            case 'pi':
+            case 'e':
+                currentExpression = currentExpression === '0' ? key : currentExpression + key;
+                break;
+            
+            // Advanced Functions
+            case 'sqr': currentExpression = `(${currentExpression})^2`; break;
+            case 'pow': currentExpression += '^'; break;
+            case 'sqrt': currentExpression = `√(${currentExpression})`; break;
+            case 'fact': currentExpression = String(factorial(Number(currentExpression))); break;
+            case 'log':
+            case 'ln':
             case 'sin':
             case 'cos':
             case 'tan':
-            case 'log':
-            case 'ln':
-                if (currentExpression === '0') {
-                    currentExpression = key + '(';
-                } else {
-                    currentExpression += key + '(';
-                }
-                break;
-            case 'pi':
-                 if (currentExpression === '0') {
-                    currentExpression = 'π';
-                } else {
-                    currentExpression += 'π';
-                }
-                break;
-            default: // Numbers, operators, parentheses
-                if (currentExpression === '0') {
+                 currentExpression = currentExpression === '0' ? key + '(' : currentExpression + key + '(';
+                 break;
+
+            // Operators and numbers
+            default:
+                if (currentExpression === '0' && !('. ( ) / * - +'.includes(key))) {
                     currentExpression = key;
                 } else {
                     currentExpression += key;
                 }
                 break;
         }
-
         updateDisplay();
     });
+    updateDisplay(); // Initial display update
 });
