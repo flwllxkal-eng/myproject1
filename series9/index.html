@@ -3,88 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Series #9: Scientific Calculator Pro</title>
-    <meta name="description" content="A powerful, feature-rich scientific calculator with memory functions, degree/radian modes, and an intuitive layout for students and professionals.">
+    <title>Series #9: Scientific Calculator</title>
+    <meta name="description" content="An advanced, user-friendly scientific calculator with support for keyboard input, complex functions, and a clear, intuitive layout.">
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
         <header class="app-header">
-            <h1>Scientific Calculator Pro</h1>
-            <p>Your advanced tool for complex calculations.</p>
+            <h1>Scientific Calculator</h1>
         </header>
 
         <main class="calculator-body">
             <div class="calculator">
-                <div class="display-container">
-                    <div id="mode-indicator" class="mode-indicator">DEG</div>
-                    <div id="display" class="display">0</div>
-                </div>
-                <div class="buttons-grid">
-                    <!-- Function & Memory Keys -->
-                    <button class="btn func" data-key="deg">Deg/Rad</button>
-                    <button class="btn func" data-key="mc">MC</button>
-                    <button class="btn func" data-key="mr">MR</button>
-                    <button class="btn func" data-key="m-">M-</button>
-                    <button class="btn func accent" data-key="m+">M+</button>
-
-                    <button class="btn func" data-key="sin">sin</button>
-                    <button class="btn func" data-key="cos">cos</button>
-                    <button class="btn func" data-key="tan">tan</button>
-                    <button class="btn func" data-key="log">log</button>
-                    <button class="btn func" data-key="ln">ln</button>
-
-                    <button class="btn func" data-key="sqr">x²</button>
-                    <button class="btn func" data-key="pow">xʸ</button>
-                    <button class="btn func" data-key="sqrt">√</button>
-                    <button class="btn func" data-key="fact">x!</button>
-                    <button class="btn func" data-key="/">÷</button>
-                    
-                    <button class="btn func" data-key="pi">π</button>
-                    <button class="btn func" data-key="e">e</button>
-                    <button class="btn" data-key="7">7</button>
-                    <button class="btn" data-key="8">8</button>
-                    <button class="btn" data-key="9">9</button>
-                    <button class="btn operator" data-key="*">×</button>
-
-                    <button class="btn func" data-key="(">(</button>
-                    <button class="btn func" data-key=")">)</button>
-                    <button class="btn" data-key="4">4</button>
-                    <button class="btn" data-key="5">5</button>
-                    <button class="btn" data-key="6">6</button>
-                    <button class="btn operator" data-key="-">−</button>
-
-                    <button class="btn func" data-key="EXP">EXP</button>
-                    <button class="btn clear" data-key="AC">AC</button>
-                    <button class="btn" data-key="1">1</button>
-                    <button class="btn" data-key="2">2</button>
-                    <button class="btn" data-key="3">3</button>
-                    <button class="btn operator" data-key="+">+</button>
-
-                    <button class="btn func" data-key="DEL">DEL</button>
-                    <button class="btn" data-key="0">0</button>
-                    <button class="btn" data-key=".">.</button>
-                    <button id="equals" class="btn operator" data-key="=">=</button>
+                <div id="display" class="display">0</div>
+                <div class="buttons">
+                    <!-- Rows of buttons -->
+                    <div class="button-row">
+                        <button class="btn func clear" data-key="AC">AC</button>
+                        <button class="btn func" data-key="DEL">DEL</button>
+                        <button class="btn func" data-key="(">(</button>
+                        <button class="btn func" data-key=")">)</button>
+                        <button class="btn func" data-key="pi">π</button>
+                        <button class="btn func" data-key="e">e</button>
+                    </div>
+                    <div class="button-row">
+                        <button class="btn func" data-key="sin">sin</button>
+                        <button class="btn func" data-key="cos">cos</button>
+                        <button class="btn func" data-key="tan">tan</button>
+                        <button class="btn func" data-key="log">log</button>
+                        <button class="btn func" data-key="ln">ln</button>
+                    </div>
+                    <div class="button-row">
+                        <button class="btn func" data-key="sqrt">√</button>
+                        <button class="btn func" data-key="sqr">x²</button>
+                        <button class="btn func" data-key="pow">xʸ</button>
+                        <button class="btn func" data-key="EXP">EXP</button>
+                        <button class="btn func" data-key="fact">x!</button>
+                    </div>
+                    <div class="button-row">
+                        <button class="btn" data-key="7">7</button>
+                        <button class="btn" data-key="8">8</button>
+                        <button class="btn" data-key="9">9</button>
+                        <button class="btn operator" data-key="/">÷</button>
+                    </div>
+                    <div class="button-row">
+                        <button class="btn" data-key="4">4</button>
+                        <button class="btn" data-key="5">5</button>
+                        <button class="btn" data-key="6">6</button>
+                        <button class="btn operator" data-key="*">×</button>
+                    </div>
+                    <div class="button-row">
+                        <button class="btn" data-key="1">1</button>
+                        <button class="btn" data-key="2">2</button>
+                        <button class="btn" data-key="3">3</button>
+                        <button class="btn operator" data-key="-">−</button>
+                    </div>
+                    <div class="button-row">
+                        <button class="btn" data-key="0">0</button>
+                        <button class="btn" data-key=".">.</button>
+                        <button id="equals" class="btn operator" data-key="=">=</button>
+                        <button class="btn operator" data-key="+">+</button>
+                    </div>
                 </div>
             </div>
+
+            <section class="instructions">
+                <h2>How to Use & Features</h2>
+                <p>This calculator supports both mouse clicks and keyboard input for all its functionalities.</p>
+                <ul>
+                    <li><strong>Basic Operations:</strong> Use <code>0-9</code>, <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, and <code>.</code> for standard arithmetic. Press <code>Enter</code> to calculate or <code>=</code>.</li>
+                    <li><strong>Clear & Delete:</strong> <code>AC</code> (or <code>Escape</code>) clears the entire expression. <code>DEL</code> (or <code>Backspace</code>) removes the last character.</li>
+                    <li><strong>Parentheses <code>()</code>:</strong> Group operations to control the order of calculation.</li>
+                    <li><strong>Constants (π, e):</strong> Use <code>π</code> for Pi (3.14159...) and <code>e</code> for Euler's number (2.71828...).</li>
+                    <li><strong>Trigonometry (sin, cos, tan):</strong> Calculates the trigonometric function of a value. Assumes input in radians (e.g., <code>sin(π/2)</code>).</li>
+                    <li><strong>Logarithms (log, ln):</strong> <code>log</code> is the base-10 logarithm, and <code>ln</code> is the natural (base-e) logarithm.</li>
+                    <li><strong>Powers & Roots:</strong>
+                        <ul>
+                            <li><code>x²</code>: Squares the current number (e.g., <code>(5)^2</code>).</li>
+                            <li><code>xʸ</code>: Raises a number to a power (e.g., <code>3^4</code>). Use the <code>^</code> character from keyboard.</li>
+                            <li><code>√</code>: Calculates the square root (e.g., <code>√(9)</code>).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Factorial <code>x!</code>:</strong> Calculates the factorial of a non-negative integer (e.g., <code>fact(5)</code> which is 120).</li>
+                    <li><strong>Scientific Notation <code>EXP</code>:</strong> Use <code>EXP</code> to enter numbers in scientific notation (e.g., <code>3.2EXP5</code> is 3.2 x 10<sup>5</sup>).</li>
+                </ul>
+            </section>
         </main>
-
-        <section class="instructions">
-            <h2>How to Use</h2>
-            <ul>
-                <li><strong>Deg/Rad:</strong> Toggles angle units for trig functions (sin, cos, tan).</li>
-                <li><strong>Memory (M+/M-/MR/MC):</strong> Store, subtract from, add to, recall, and clear memory.</li>
-                <li><strong>Advanced Functions:</strong> Includes `x²` (square), `xʸ` (power), `√` (sqrt), `x!` (factorial), `log`, `ln`, `π`, and `e`.</li>
-                <li><strong>EXP:</strong> Use for scientific notation (e.g., `3.2e+5`).</li>
-            </ul>
-        </section>
-
+        
         <footer>
             <a href="/" class="back-link">&larr; Back to Main Page</a>
-            <p>&copy; 2024 Web Project Series. All Rights Reserved.</p>
         </footer>
     </div>
     <script src="main.js"></script>
