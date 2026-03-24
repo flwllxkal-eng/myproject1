@@ -34,13 +34,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const calculate = (expr) => {
         if (!expr) return '0';
 
-        // New function to handle left-to-right exponentiation
+        // Helper function for factorial calculation
+        const factorial = (n) => {
+            if (n < 0 || n % 1 !== 0) return NaN; // Invalid input for factorial
+            if (n === 0 || n === 1) return 1;
+            let result = 1;
+            for (let i = 2; i <= n; i++) {
+                result *= i;
+            }
+            return result;
+        };
+
+        // Function to pre-process and calculate factorials in the expression string
+        const preprocessFactorials = (str) => {
+            // Regex to find an integer followed by '!'
+            const factRegex = /(\d+)\s*!/g;
+            return str.replace(factRegex, (match, numberStr) => {
+                return factorial(parseInt(numberStr, 10));
+            });
+        };
+        
         const transformExponents = (str) => {
             const chainRegex = /((?:-?\d*\.?\d+(?:e[+-]?\d+)?\s*\^\s*)+-?\d*\.?\d+(?:e[+-]?\d+)?)/g;
             return str.replace(chainRegex, (chain) => {
                 const parts = chain.split('^').map(p => p.trim());
                 if (parts.length < 2) return chain;
-
                 let replacement = `Math.pow(${parts[0]}, ${parts[1]})`;
                 for (let i = 2; i < parts.length; i++) {
                     replacement = `Math.pow(${replacement}, ${parts[i]})`;
@@ -50,8 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            let evalExpr = expr
-                .replace(/,/g, '') // Remove formatting commas
+            // Pre-process factorials first!
+            let evalExpr = preprocessFactorials(expr);
+
+            // Then do all other replacements
+            evalExpr = evalExpr
+                .replace(/,/g, '')
                 .replace(/×/g, '*')
                 .replace(/÷/g, '/')
                 .replace(/π/g, 'Math.PI')
@@ -63,29 +85,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 .replace(/cos/g, 'Math.cos')
                 .replace(/tan/g, 'Math.tan')
                 .replace(/EXP/g, 'e')
+                // Add multiplication where implied
                 .replace(/(\d)Math\.PI/g, '$1 * Math.PI')
                 .replace(/(\d)Math\.E/g, '$1 * Math.E')
                 .replace(/(\d)(Math\.sin|Math\.cos|Math\.tan|Math\.log10|Math\.log|Math\.sqrt)/g, '$1 * $2')
                 .replace(/\)(\d|\(|Math)/g, ') * $1');
 
-            // Apply the new exponent transformation
+            // Apply exponent transformation
             evalExpr = transformExponents(evalExpr);
             
             const result = new Function('return ' + evalExpr)();
+
+            if (isNaN(result) || !isFinite(result)) {
+                return 'Error';
+            }
+
             return parseFloat(result.toPrecision(12));
         } catch (error) {
             return 'Error';
         }
     };
 
-    const factorial = (n) => {
-        if (n < 0 || n % 1 !== 0) return 'Error';
-        if (n === 0) return 1;
-        return n > 1 ? n * factorial(n - 1) : 1;
-    };
-
     const handleButtonClick = (key) => {
-        if (currentExpression === '0' && !('.()/*-+'.includes(key))) {
+        if (currentExpression === '0' && !('.()/*-+\''.includes(key))) {
             currentExpression = '';
         }
 
@@ -107,11 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'pow':
                 currentExpression += '^';
                 break;
-            case 'fact':
-                try {
-                    const numToFactorial = calculate(currentExpression);
-                    currentExpression = String(factorial(Number(numToFactorial)));
-                } catch (e) { currentExpression = 'Error'; }
+            case 'fact': // THE FIX IS HERE
+                currentExpression += '!'; // Just append '!' and let calculate() handle it
                 break;
             default:
                 currentExpression += key;
@@ -122,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     buttons.addEventListener('click', (event) => {
         const target = event.target;
-        if (target.matches('.btn')) {
+        if (target.matches('.btn') && target.dataset.key) {
             handleButtonClick(target.dataset.key);
         }
     });
@@ -132,10 +151,20 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDisplay();
     });
 
-    expressionDisplay.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
+    // Comprehensive keyboard support
+    document.addEventListener('keydown', (e) => {
+        const key = e.key;
+        const keyMap = {
+            'Enter': '=', 'Backspace': 'DEL', 'Escape': 'AC',
+            '/': '/', '*': '*', '-': '-', '+': '+', 'x': '*',
+            '1': '1', '2': '2', '3': '3', '4': '4', '5': '5',
+            '6': '6', '7': '7', '8': '8', '9': '9', '0': '0',
+            '.': '.', '(': '(', ')': ')', '!': 'fact'
+        };
+        
+        if (keyMap[key]) {
             e.preventDefault();
-            handleButtonClick('=');
+            handleButtonClick(keyMap[key]);
         }
     });
 
