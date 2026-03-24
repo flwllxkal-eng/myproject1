@@ -1,96 +1,124 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>실시간 공학용 계산기 | 수식 편집 및 즉시 결과 확인</title>
-    <meta name="description" content="수식을 입력하면서 실시간으로 결과를 확인하고, 자유롭게 편집할 수 있는 가장 진보된 무료 온라인 공학용 계산기입니다. 학생, 개발자, 전문가를 위한 최고의 선택.">
-    <meta name="keywords" content="실시간 계산기, 공학용 계산기, 온라인 계산기, 무료 계산기, 수식 편집, 키보드 계산기, 삼각함수, 로그, 수학, 공학">
+    <title>Advanced Scientific Calculator | Online, Free, Keyboard Support</title>
+    <meta name="description" content="A powerful, free online scientific calculator with a dual display for real-time results and expression editing. Perfect for students, developers, and professionals.">
+    <meta name="keywords" content="scientific calculator, online calculator, free calculator, real-time calculator, expression editing, keyboard calculator, trigonometry, logarithm, math, engineering">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
         <header class="app-header">
-            <h1>실시간 공학용 계산기</h1>
-            <p class="subtitle">수식을 편집하며 즉시 결과를 확인하세요</p>
+            <h1>Scientific Calculator</h1>
+            <p class="subtitle">Real-time results and editable expressions</p>
         </header>
 
         <main class="calculator-body">
             <div class="calculator">
-                <div class="display-container">
+                <!-- The display will be a single component visually, but two elements functionally -->
+                <div class="display">
                     <div id="expression-display" class="expression-display" contenteditable="true" spellcheck="false">0</div>
                     <div id="result-display" class="result-display" aria-live="polite">0</div>
                 </div>
                 <div class="buttons">
-                    <!-- Button rows -->
-                    <div class="button-row"><button class="btn func clear" data-key="AC">AC</button><button class="btn func" data-key="DEL">DEL</button><button class="btn func" data-key="(">(</button><button class="btn func" data-key=")">)</button><button class="btn func" data-key="pi">π</button><button class="btn func" data-key="e">e</button></div>
-                    <div class="button-row"><button class="btn func" data-key="sin">sin</button><button class="btn func" data-key="cos">cos</button><button class="btn func" data-key="tan">tan</button><button class="btn func" data-key="log">log</button><button class="btn func" data-key="ln">ln</button></div>
-                    <div class="button-row"><button class="btn func" data-key="sqrt">√</button><button class="btn func" data-key="sqr">x²</button><button class="btn func" data-key="pow">xʸ</button><button class="btn func" data-key="EXP">EXP</button><button class="btn func" data-key="fact">x!</button></div>
-                    <div class="button-row"><button class="btn" data-key="7">7</button><button class="btn" data-key="8">8</button><button class="btn" data-key="9">9</button><button class="btn operator" data-key="/">÷</button></div>
-                    <div class="button-row"><button class="btn" data-key="4">4</button><button class="btn" data-key="5">5</button><button class="btn" data-key="6">6</button><button class="btn operator" data-key="*">×</button></div>
-                    <div class="button-row"><button class="btn" data-key="1">1</button><button class="btn" data-key="2">2</button><button class="btn" data-key="3">3</button><button class="btn operator" data-key="-">−</button></div>
-                    <div class="button-row"><button class="btn" data-key="0">0</button><button class="btn" data-key=".">.</button><button id="equals" class="btn operator" data-key="=">=</button><button class="btn operator" data-key="+">+</button></div>
+                    <button class="btn func" data-key="sin">sin</button>
+                    <button class="btn func" data-key="cos">cos</button>
+                    <button class="btn func" data-key="tan">tan</button>
+                    <button class="btn func" data-key="log">log</button>
+                    <button class="btn func" data-key="ln">ln</button>
+                    
+                    <button class="btn func" data-key="(">(</button>
+                    <button class="btn func" data-key=")">)</button>
+                    <button class="btn func" data-key="sqrt">√</button>
+                    <button class="btn func" data-key="sqr">x²</button>
+                    <button class="btn func" data-key="pow">xʸ</button>
+                    
+                    <button class="btn" data-key="7">7</button>
+                    <button class="btn" data-key="8">8</button>
+                    <button class="btn" data-key="9">9</button>
+                    <button class="btn operator" data-key="/">÷</button>
+                    <button class="btn func clear" data-key="AC">AC</button>
+
+                    <button class="btn" data-key="4">4</button>
+                    <button class="btn" data-key="5">5</button>
+                    <button class="btn" data-key="6">6</button>
+                    <button class="btn operator" data-key="*">×</button>
+                    <button class="btn func" data-key="DEL">DEL</button>
+
+                    <button class="btn" data-key="1">1</button>
+                    <button class="btn" data-key="2">2</button>
+                    <button class="btn" data-key="3">3</button>
+                    <button class="btn operator" data-key="-">−</button>
+                    <button class="btn func" data-key="fact">x!</button>
+                    
+                    <button class="btn" data-key="0">0</button>
+                    <button class="btn" data-key=".">.</button>
+                    <button class="btn" data-key="pi">π</button>
+                    <button class="btn" data-key="e">e</button>
+                    <button id="equals" class="btn operator" data-key="=">=</button>
                 </div>
             </div>
 
             <section class="instructions">
-                <h2>계산기 소개 및 사용 규칙</h2>
-                <p>본 온라인 공학용 계산기는 학생, 엔지니어, 과학자 및 수학 애호가를 위해 설계된 강력하고 직관적인 도구입니다. 복잡한 수학적 표현을 쉽게 입력하고 정확한 결과를 얻을 수 있도록 지원하며, 데스크톱과 모바일 환경 모두에 최적화되어 있습니다. 모든 기능은 마우스 클릭 또는 키보드 단축키를 통해 완벽하게 제어할 수 있습니다.</p>
+                <h2>Calculator Guide & Features</h2>
+                <p>This online scientific calculator is a powerful and intuitive tool designed for students, engineers, scientists, and math enthusiasts. It allows you to easily input complex mathematical expressions and get accurate results instantly. It is optimized for both desktop and mobile use, with full support for mouse or keyboard input.</p>
                 
-                <h3>기본 작동 원리</h3>
+                <h3>Core Principles</h3>
                 <ul>
-                    <li><strong>연산자 우선 순위 (PEMDAS):</strong> 계산기는 <strong>괄호(Parentheses)</strong>, <strong>지수(Exponents)</strong>, <strong>곱셈/나눗셈(Multiplication/Division)</strong>, <strong>덧셈/뺄셈(Addition/Subtraction)</strong>의 표준 수학적 우선 순위를 따릅니다. 복잡한 수식도 정확한 순서로 계산됩니다. 예: <code>10 + 2 * 3</code>은 <code>16</code>으로 계산됩니다.</li>
-                    <li><strong>각도 단위 (Radians):</strong> 모든 삼각함수(sin, cos, tan)는 <strong>라디안(Radian)</strong> 단위를 기본으로 사용합니다. 각도(Degree)로 계산해야 할 경우, 라디안으로 변환해야 합니다. (예: 90° = π/2 라디안).</li>
-                    <li><strong>오류 처리:</strong> <code>0으로 나누기</code> 또는 <code>잘못된 수식</code>과 같이 수학적으로 정의되지 않은 연산을 시도하면 디스플레이에 'Error'가 표시됩니다. 이때는 <code>AC</code> 키를 눌러 리셋하세요.</li>
+                    <li><strong>Order of Operations (PEMDAS):</strong> The calculator follows the standard mathematical order of operations: <strong>P</strong>arentheses, <strong>E</strong>xponents, <strong>M</strong>ultiplication/<strong>D</strong>ivision, and <strong>A</strong>ddition/<strong>S</strong>ubtraction. This ensures that complex expressions are evaluated correctly. Ex: <code>10 + 2 * 3</code> results in <code>16</code>.</li>
+                    <li><strong>Angle Units (Radians):</strong> All trigonometric functions (sin, cos, tan) operate in <strong>Radians</strong>. If you need to calculate with degrees, you must convert them first (e.g., 90° = π/2 radians).</li>
+                    <li><strong>Error Handling:</strong> If you attempt a mathematically undefined operation, such as <code>Division by zero</code> or input a <code>Syntax error</code>, the display will show 'Error'. Simply press the <code>AC</code> key to reset.</li>
                 </ul>
 
-                <h2>주요 기능 상세 가이드</h2>
-                <p>각 기능의 개념과 실제 사용 예제를 통해 계산기를 100% 활용하는 방법을 알아보세요.</p>
+                <h2>Detailed Function Guide</h2>
+                <p>Learn how to get the most out of your calculator with this guide to its features and functions.</p>
 
                 <article>
-                    <h4>1. 기본 및 고급 연산</h4>
+                    <h4>1. Basic & Advanced Operations</h4>
                     <ul>
-                        <li><strong>사칙연산 (+, -, ×, ÷):</strong> 가장 기본적인 연산입니다. 키보드의 숫자패드와 연산자 키를 사용하면 더욱 편리합니다.</li>
-                        <li><strong>괄호 ():</strong> 연산의 우선순위를 지정할 때 사용합니다. 예: <code>(3 + 5) * 2</code>는 <code>16</code>입니다.</li>
-                        <li><strong>지수 (xʸ, ^):</strong> 숫자를 거듭제곱합니다. <code>밑수 xʸ 지수</code> 또는 <code>밑수 ^ 지수</code> 형태로 입력합니다. 예: <code>2^3</code> (2의 3제곱) = <code>8</code>.</li>
-                         <li><strong>제곱 (x²):</strong> 숫자를 즉시 제곱합니다. 예: <code>5x²</code> = <code>25</code>.</li>
-                        <li><strong>제곱근 (√):</strong> 숫자의 양의 제곱근을 계산합니다. 예: <code>√9</code> = <code>3</code>. 함수 뒤에 괄호를 사용하는 것이 좋습니다. 예: <code>√(16)</code>.</li>
+                        <li><strong>Arithmetic (+, -, ×, ÷):</strong> Standard operations. For faster input, you can use your keyboard's number pad and operator keys.</li>
+                        <li><strong>Parentheses ():</strong> Use these to group expressions and force a specific order of operations. Ex: <code>(3 + 5) * 2</code> equals <code>16</code>.</li>
+                        <li><strong>Exponentiation (xʸ, ^):</strong> Raise a number to a power. Input as <code>base ^ exponent</code>. Ex: <code>2^3</code> = <code>8</code>.</li>
+                        <li><strong>Square (x²):</strong> Quickly square a number. Ex: <code>5x²</code> results in <code>25</code>.</li>
+                        <li><strong>Square Root (√):</strong> Calculates the non-negative square root of a number. It is best practice to use parentheses. Ex: <code>√(16)</code> = <code>4</code>.</li>
                     </ul>
                 </article>
                 
                 <article>
-                    <h4>2. 상수 (π, e)</h4>
+                    <h4>2. Constants (π, e)</h4>
                     <ul>
-                        <li><strong>π (파이):</strong> 원주율(약 3.14159)을 나타냅니다. 원의 넓이나 둘레, 주기 함수 등에서 필수적으로 사용됩니다. 예: <code>π * 10^2</code> (반지름이 10인 원의 넓이).</li>
-                        <li><strong>e (오일러 수):</strong> 자연로그의 밑(약 2.71828)으로, 복리 계산, 미적분, 통계 등 다양한 분야에서 중요한 역할을 합니다.</li>
+                        <li><strong>π (Pi):</strong> Represents the mathematical constant Pi (approx. 3.14159). Essential for calculations involving circles and periodic functions. Ex: <code>π * 10^2</code> (Area of a circle with radius 10).</li>
+                        <li><strong>e (Euler's Number):</strong> Represents the base of the natural logarithm (approx. 2.71828). It is fundamental in calculus, compound interest, and more.</li>
                     </ul>
                 </article>
 
                 <article>
-                    <h4>3. 삼각 함수 (sin, cos, tan)</h4>
-                    <p>직각삼각형의 변들의 비율을 나타내며, 주기적인 현상을 모델링하는 데 사용됩니다. <strong>입력값은 라디안 단위여야 합니다.</strong></p>
+                    <h4>3. Trigonometric Functions (sin, cos, tan)</h4>
+                    <p>Used to model periodic phenomena and solve geometric problems. <strong>Note: All inputs are in Radians.</strong></p>
                     <ul>
-                        <li><strong>sin (사인):</strong> 특정 각에 대한 대변과 빗변의 비율입니다. 예: <code>sin(π/2)</code> = 1.</li>
-                        <li><strong>cos (코사인):</strong> 특정 각에 대한 인접변과 빗변의 비율입니다. 예: <code>cos(π)</code> = -1.</li>
-                        <li><strong>tan (탄젠트):</strong> 특정 각에 대한 대변과 인접변의 비율입니다. 예: <code>tan(π/4)</code> = 1.</li>
+                        <li><strong>sin (Sine):</strong> Returns the ratio of a right triangle's opposite side to its hypotenuse. Ex: <code>sin(π/2)</code> = 1.</li>
+                        <li><strong>cos (Cosine):</strong> Returns the ratio of the adjacent side to the hypotenuse. Ex: <code>cos(π)</code> = -1.</li>
+                        <li><strong>tan (Tangent):</strong> Returns the ratio of the opposite side to the adjacent side. Ex: <code>tan(π/4)</code> = 1.</li>
                     </ul>
                 </article>
 
                 <article>
-                    <h4>4. 로그 함수 (log, ln)</h4>
-                    <p>지수 연산의 역연산으로, 매우 큰 수를 다루거나 데이터의 스케일을 변환할 때 유용합니다.</p>
+                    <h4>4. Logarithmic Functions (log, ln)</h4>
+                    <p>The inverse of exponentiation, useful for handling very large numbers and scaling data.</p>
                     <ul>
-                        <li><strong>log (상용로그):</strong> 밑이 10인 로그입니다. 소리의 강도(데시벨), 지진의 강도(리히터 규모) 등을 측정할 때 사용됩니다. 예: <code>log(100)</code> = 2.</li>
-                        <li><strong>ln (자연로그):</strong> 밑이 e인 로그입니다. 인구 증가 모델, 방사성 붕괴 등 자연 현상을 모델링하는 데 널리 쓰입니다. 예: <code>ln(e^3)</code> = 3.</li>
+                        <li><strong>log (Common Log):</strong> The base-10 logarithm. Used in measuring sound intensity (decibels), earthquake magnitude (Richter scale), etc. Ex: <code>log(100)</code> = 2.</li>
+                        <li><strong>ln (Natural Log):</strong> The base-e logarithm. Widely used in models of natural phenomena like population growth or radioactive decay. Ex: <code>ln(e^3)</code> = 3.</li>
                     </ul>
                 </article>
 
                 <article>
-                    <h4>5. 특수 기능</h4>
+                    <h4>5. Special Functions</h4>
                     <ul>
-                        <li><strong>팩토리얼 (x!):</strong> 1부터 해당 양의 정수까지의 모든 정수를 곱한 값입니다. 경우의 수를 계산할 때 사용됩니다. 예: <code>5!</code> = 5 × 4 × 3 × 2 × 1 = 120.</li>
-                        <li><strong>과학적 표기법 (EXP):</strong> 매우 크거나 작은 숫자를 10의 거듭제곱으로 간결하게 표현합니다. 'E' 또는 'e'로 입력할 수 있습니다. 예: <code>3.5EXP6</code>은 3.5 × 10⁶을 의미하며, <code>3500000</code>과 같습니다.</li>
+                        <li><strong>Factorial (x!):</strong> The product of all positive integers up to a number. Used in combinatorics to find the number of permutations. Ex: <code>5!</code> = 5 × 4 × 3 × 2 × 1 = 120.</li>
+                        <li><strong>Scientific Notation (EXP):</strong> A shorthand for writing very large or small numbers. You can use 'E' or 'e'. Ex: <code>3.5EXP6</code> is equivalent to 3.5 × 10⁶ or <code>3,500,000</code>.</li>
                     </ul>
                 </article>
             </section>

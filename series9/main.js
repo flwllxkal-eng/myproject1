@@ -3,27 +3,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultDisplay = document.getElementById('result-display');
     const buttons = document.querySelector('.buttons');
 
-    // --- State Management ---
     let currentExpression = '0';
 
-    // --- Formatting Helpers ---
     const formatResult = (result) => {
         if (result === 'Error' || isNaN(result) || !isFinite(result)) {
             return 'Error';
         }
         const num = Number(result);
-        // Format with commas and handle precision
         return num.toLocaleString('en-US', { maximumFractionDigits: 10 });
     };
 
-    // --- Display Update ---
     const updateDisplay = (shouldRecalculate = true) => {
         expressionDisplay.textContent = currentExpression;
         if (shouldRecalculate) {
             const result = calculate(currentExpression);
             resultDisplay.textContent = formatResult(result);
         }
-        // Set cursor to the end of the expression display
         setCursorToEnd(expressionDisplay);
     };
 
@@ -31,14 +26,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const range = document.createRange();
         const selection = window.getSelection();
         range.selectNodeContents(element);
-        range.collapse(false); // false to collapse to the end
+        range.collapse(false);
         selection.removeAllRanges();
         selection.addRange(range);
     };
 
-    // --- Core Calculation Logic ---
     const calculate = (expr) => {
         if (!expr) return '0';
+
+        // New function to handle left-to-right exponentiation
+        const transformExponents = (str) => {
+            const chainRegex = /((?:-?\d*\.?\d+(?:e[+-]?\d+)?\s*\^\s*)+-?\d*\.?\d+(?:e[+-]?\d+)?)/g;
+            return str.replace(chainRegex, (chain) => {
+                const parts = chain.split('^').map(p => p.trim());
+                if (parts.length < 2) return chain;
+
+                let replacement = `Math.pow(${parts[0]}, ${parts[1]})`;
+                for (let i = 2; i < parts.length; i++) {
+                    replacement = `Math.pow(${replacement}, ${parts[i]})`;
+                }
+                return replacement;
+            });
+        };
+
         try {
             let evalExpr = expr
                 .replace(/,/g, '') // Remove formatting commas
@@ -46,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 .replace(/÷/g, '/')
                 .replace(/π/g, 'Math.PI')
                 .replace(/e/g, 'Math.E')
-                .replace(/\^/g, '**')
                 .replace(/√/g, 'Math.sqrt')
                 .replace(/log/g, 'Math.log10')
                 .replace(/ln/g, 'Math.log')
@@ -57,22 +66,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 .replace(/(\d)Math\.PI/g, '$1 * Math.PI')
                 .replace(/(\d)Math\.E/g, '$1 * Math.E')
                 .replace(/(\d)(Math\.sin|Math\.cos|Math\.tan|Math\.log10|Math\.log|Math\.sqrt)/g, '$1 * $2')
-                .replace(/\)(\d|\()/g, ') * $1');
+                .replace(/\)(\d|\(|Math)/g, ') * $1');
 
+            // Apply the new exponent transformation
+            evalExpr = transformExponents(evalExpr);
+            
             const result = new Function('return ' + evalExpr)();
             return parseFloat(result.toPrecision(12));
         } catch (error) {
-            return 'Error'; 
+            return 'Error';
         }
     };
-    
+
     const factorial = (n) => {
         if (n < 0 || n % 1 !== 0) return 'Error';
         if (n === 0) return 1;
         return n > 1 ? n * factorial(n - 1) : 1;
     };
 
-    // --- Event Handlers ---
     const handleButtonClick = (key) => {
         if (currentExpression === '0' && !('.()/*-+'.includes(key))) {
             currentExpression = '';
@@ -88,8 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
             case '=':
                 currentExpression = resultDisplay.textContent.replace(/,/g, '');
-                updateDisplay(false); // Don't recalculate, just update expression
-                return; // Exit to avoid re-adding to expression
+                updateDisplay(false);
+                return;
             case 'sqr':
                 currentExpression += '^2';
                 break;
@@ -109,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDisplay();
     };
 
-    // --- Event Listeners ---
     buttons.addEventListener('click', (event) => {
         const target = event.target;
         if (target.matches('.btn')) {
@@ -117,14 +127,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Listen for direct input on the expression display
     expressionDisplay.addEventListener('input', (e) => {
-        // Basic sanitization - better handling might be needed
-        currentExpression = e.target.textContent.replace(/\n/g, ''); 
+        currentExpression = e.target.textContent.replace(/\n/g, '');
         updateDisplay();
     });
 
-    // Prevent non-number/operator keys in contenteditable, handle Enter and Backspace
     expressionDisplay.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -132,6 +139,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Initialize
     updateDisplay();
 });
