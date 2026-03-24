@@ -3,134 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Scientific Calculator | User-Defined Layout</title>
-    <meta name="description" content="A scientific calculator featuring a unique, user-defined layout with numbers positioned on the left side as requested.">
-    <meta name="keywords" content="scientific calculator, online calculator, free calculator, custom layout, left-handed calculator, math, engineering">
+    <title>Advanced Scientific Calculator | Final Layout</title>
+    <meta name="description" content="A scientific calculator with a corrected, intuitive layout and robust functionality, including fixes for function inputs.">
+    <meta name="keywords" content="scientific calculator, online calculator, free calculator, math, engineering, layout fix">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Orbitron:wght@500&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Orbitron:wght@500&family=Roboto+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="app-container">
-        <header class="app-header">
-            <h1>Scientific Calculator</h1>
-            <p class="subtitle">Your Custom Layout: Numbers on the Left</p>
-        </header>
-
-        <div class="calculator-body">
-            <div class="calculator">
-                <div class="display">
-                    <div id="expression-display" class="expression-display" contenteditable="true" spellcheck="false">0</div>
-                    <div id="result-display" class="result-display" aria-live="polite">0</div>
-                </div>
-                
-                <!-- FINAL LAYOUT: NUMBERS ON THE FAR LEFT AND BOTTOM -->
-                <div class="buttons">
-                    <!-- Row 1: Top row functions -->
-                    <button class="btn func" data-key="sin">sin</button>
-                    <button class="btn func" data-key="cos">cos</button>
-                    <button class="btn func" data-key="tan">tan</button>
-                    <button class="btn func" data-key="log">log</button>
-                    <button class="btn control" data-key="AC">AC</button>
-                    <button class="btn control" data-key="DEL">DEL</button>
-
-                    <!-- Row 2: Numbers start on the left -->
-                    <button class="btn number" data-key="7">7</button>
-                    <button class="btn number" data-key="8">8</button>
-                    <button class="btn number" data-key="9">9</button>
-                    <button class="btn func" data-key="(">(</button>
-                    <button class="btn func" data-key=")">)</button>
-                    <button class="btn operator" data-key="/">÷</button>
-                    
-                    <!-- Row 3 -->
-                    <button class="btn number" data-key="4">4</button>
-                    <button class="btn number" data-key="5">5</button>
-                    <button class="btn number" data-key="6">6</button>
-                    <button class="btn func" data-key="sqrt">√</button>
-                    <button class="btn func" data-key="sqr">x²</button>
-                    <button class="btn operator" data-key="*">×</button>
-
-                    <!-- Row 4 -->
-                    <button class="btn number" data-key="1">1</button>
-                    <button class="btn number" data-key="2">2</button>
-                    <button class="btn number" data-key="3">3</button>
-                    <button class="btn func" data-key="pow">xʸ</button>
-                    <button class="btn func" data-key="fact">x!</button>
-                    <button class="btn operator" data-key="-">−</button>
-
-                    <!-- Row 5: Zero and decimal on the left bottom -->
-                    <button class="btn number zero" data-key="0">0</button> <!-- Spans 2 columns -->
-                    <button class="btn dot" data-key=".">.</button>
-                    <button class="btn func" data-key="pi">π</button>
-                    <button class="btn operator" data-key="+">+</button>
-                    <button class="btn equals" data-key="=">=</button> <!-- Final equals position -->
-                </div>
-            </div>
-
-            <section class="instructions">
-                <h2>Calculator Guide & Features</h2>
-                <p>This online scientific calculator is a powerful and intuitive tool designed for students, engineers, scientists, and math enthusiasts. It allows you to easily input complex mathematical expressions and get accurate results instantly. It is optimized for both desktop and mobile use, with full support for mouse or keyboard input.</p>
-                
-                <h3>Core Principles</h3>
-                <ul>
-                    <li><strong>Order of Operations (PEMDAS):</strong> The calculator follows the standard mathematical order of operations: <strong>P</strong>arentheses, <strong>E</strong>xponents, <strong>M</strong>ultiplication/<strong>D</strong>ivision, and <strong>A</strong>ddition/<strong>S</strong>ubtraction. This ensures that complex expressions are evaluated correctly. Ex: <code>10 + 2 * 3</code> results in <code>16</code>.</li>
-                    <li><strong>Angle Units (Radians):</strong> All trigonometric functions (sin, cos, tan) operate in <strong>Radians</strong>. If you need to calculate with degrees, you must convert them first (e.g., 90° = π/2 radians).</li>
-                    <li><strong>Error Handling:</strong> If you attempt a mathematically undefined operation, such as <code>Division by zero</code> or input a <code>Syntax error</code>, the display will show 'Error'. Simply press the <code>AC</code> key to reset.</li>
-                </ul>
-
-                <h2>Detailed Function Guide</h2>
-                 <p>Learn how to get the most out of your calculator with this guide to its features and functions.</p>
- 
-                 <article>
-                     <h4>1. Basic & Advanced Operations</h4>
-                     <ul>
-                         <li><strong>Arithmetic (+, -, ×, ÷):</strong> Standard operations. For faster input, you can use your keyboard's number pad and operator keys.</li>
-                         <li><strong>Parentheses ():</strong> Use these to group expressions and force a specific order of operations. Ex: <code>(3 + 5) * 2</code> equals <code>16</code>.</li>
-                         <li><strong>Exponentiation (xʸ, ^):</strong> Raise a number to a power. Input as <code>base ^ exponent</code>. Ex: <code>2^3</code> = <code>8</code>.</li>
-                         <li><strong>Square (x²):</strong> Quickly square a number. Ex: <code>5x²</code> results in <code>25</code>.</li>
-                         <li><strong>Square Root (√):</strong> Calculates the non-negative square root of a number. It is best practice to use parentheses. Ex: <code>√(16)</code> = <code>4</code>.</li>
-                     </ul>
-                 </article>
-                 
-                 <article>
-                     <h4>2. Constants (π, e)</h4>
-                     <ul>
-                         <li><strong>π (Pi):</strong> Represents the mathematical constant Pi (approx. 3.14159). Essential for calculations involving circles and periodic functions. Ex: <code>π * 10^2</code> (Area of a circle with radius 10).</li>
-                         <li><strong>e (Euler's Number):</strong> Represents the base of the natural logarithm (approx. 2.71828). It is fundamental in calculus, compound interest, and more.</li>
-                     </ul>
-                 </article>
- 
-                 <article>
-                     <h4>3. Trigonometric Functions (sin, cos, tan)</h4>
-                     <p>Used to model periodic phenomena and solve geometric problems. <strong>Note: All inputs are in Radians.</strong></p>
-                     <ul>
-                         <li><strong>sin (Sine):</strong> Returns the ratio of a right triangle's opposite side to its hypotenuse. Ex: <code>sin(π/2)</code> = 1.</li>
-                         <li><strong>cos (Cosine):</strong> Returns the ratio of the adjacent side to the hypotenuse. Ex: <code>cos(π)</code> = -1.</li>
-                         <li><strong>tan (Tangent):</strong> Returns the ratio of the opposite side to the adjacent side. Ex: <code>tan(π/4)</code> = 1.</li>
-                     </ul>
-                 </article>
- 
-                 <article>
-                     <h4>4. Logarithmic Functions (log, ln)</h4>
-                     <p>The inverse of exponentiation, useful for handling very large numbers and scaling data.</p>
-                     <ul>
-                         <li><strong>log (Common Log):</strong> The base-10 logarithm. Used in measuring sound intensity (decibels), earthquake magnitude (Richter scale), etc. Ex: <code>log(100)</code> = 2.</li>
-                         <li><strong>ln (Natural Log):</strong> The base-e logarithm. Widely used in models of natural phenomena like population growth or radioactive decay. Ex: <code>ln(e^3)</code> = 3.</li>
-                     </ul>
-                 </article>
- 
-                 <article>
-                     <h4>5. Special Functions</h4>
-                     <ul>
-                         <li><strong>Factorial (x!):</strong> The product of all positive integers up to a number. Used in combinatorics to find the number of permutations. Ex: <code>5!</code> = 5 × 4 × 3 × 2 × 1 = 120.</li>
-                         <li><strong>Scientific Notation (EXP):</strong> A shorthand for writing very large or small numbers. You can use 'E' or 'e'. Ex: <code>3.5EXP6</code> is equivalent to 3.5 × 10⁶ or <code>3,500,000</code>.</li>
-                     </ul>
-                 </article>
-            </section>
+    <div class="calculator">
+        <div class="display">
+            <div id="expression-display" class="expression-display" contenteditable="true" spellcheck="false">0</div>
+            <div id="result-display" class="result-display" aria-live="polite">0</div>
         </div>
         
-        <footer>
-            <a href="/" class="back-link">&larr; Back to Main Page</a>
-        </footer>
+        <div class="buttons-grid">
+            <!-- Functions -->
+            <button class="btn func" data-key="sin">sin</button>
+            <button class="btn func" data-key="cos">cos</button>
+            <button class="btn func" data-key="tan">tan</button>
+            <button class="btn func" data-key="log">log</button>
+            <button class="btn func" data-key="ln">ln</button>
+
+            <!-- Controls -->
+            <button class="btn control" data-key="AC">AC</button>
+            <button class="btn control" data-key="DEL">DEL</button>
+            <button class="btn func" data-key="(">(</button>
+            <button class="btn func" data-key=")">)</button>
+            <button class="btn func" data-key="pi">π</button>
+
+            <!-- Numbers -->
+            <button class="btn number" data-key="7">7</button>
+            <button class="btn number" data-key="8">8</button>
+            <button class="btn number" data-key="9">9</button>
+            
+            <button class="btn number" data-key="4">4</button>
+            <button class="btn number" data-key="5">5</button>
+            <button class="btn number" data-key="6">6</button>
+
+            <button class="btn number" data-key="1">1</button>
+            <button class="btn number" data-key="2">2</button>
+            <button class="btn number" data-key="3">3</button>
+
+            <button class="btn number zero" data-key="0">0</button>
+            <button class="btn dot" data-key=".">.</button>
+
+            <!-- Operators and Equals -->
+            <button class="btn operator" data-key="/">÷</button>
+            <button class="btn operator" data-key="*">×</button>
+            <button class="btn operator" data-key="-">−</button>
+            <button class="btn operator" data-key="+">+</button>
+            <button class="btn equals" data-key="=">=</button>
+
+            <!-- Special Functions -->
+            <button class="btn func" data-key="sqrt">√</button>
+            <button class="btn func" data-key="sqr">x²</button>
+            <button class="btn func" data-key="pow">xʸ</button>
+            <button class="btn func" data-key="fact">x!</button>
+            <button class="btn func" data-key="e">e</button>
+        </div>
     </div>
     <script src="main.js"></script>
 </body>
