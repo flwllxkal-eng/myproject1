@@ -1,86 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const display = document.getElementById('display');
+    const expressionDisplay = document.getElementById('expression-display');
+    const resultDisplay = document.getElementById('result-display');
     const buttons = document.querySelector('.buttons');
 
+    // --- State Management ---
     let currentExpression = '0';
 
-    const updateDisplay = () => {
-        display.textContent = currentExpression;
+    // --- Formatting Helpers ---
+    const formatResult = (result) => {
+        if (result === 'Error' || isNaN(result) || !isFinite(result)) {
+            return 'Error';
+        }
+        const num = Number(result);
+        // Format with commas and handle precision
+        return num.toLocaleString('en-US', { maximumFractionDigits: 10 });
     };
 
-    const factorial = (n) => {
-        if (n < 0 || n % 1 !== 0) return 'Error';
-        if (n === 0) return 1;
-        let result = 1;
-        for (let i = n; i > 0; i--) {
-            result *= i;
+    // --- Display Update ---
+    const updateDisplay = (shouldRecalculate = true) => {
+        expressionDisplay.textContent = currentExpression;
+        if (shouldRecalculate) {
+            const result = calculate(currentExpression);
+            resultDisplay.textContent = formatResult(result);
         }
-        return result;
+        // Set cursor to the end of the expression display
+        setCursorToEnd(expressionDisplay);
     };
 
-    const handleKeyPress = (key) => {
-        if (currentExpression === 'Error') {
-            currentExpression = '0';
-        }
-
-        switch (key) {
-            case 'AC':
-            case 'Escape':
-                currentExpression = '0';
-                break;
-            case 'DEL':
-            case 'Backspace':
-                currentExpression = currentExpression.length > 1 ? currentExpression.slice(0, -1) : '0';
-                break;
-            case '=':
-            case 'Enter':
-                if (currentExpression) {
-                    currentExpression = String(calculate(currentExpression));
-                }
-                break;
-            case 'sqr':
-                currentExpression = `(${currentExpression})^2`;
-                break;
-            case 'pow':
-                currentExpression += '^';
-                break;
-            case 'fact':
-                currentExpression = String(factorial(Number(calculate(currentExpression))));
-                break;
-            case 'sin':
-            case 'cos':
-            case 'tan':
-            case 'log':
-            case 'ln':
-            case 'sqrt':
-                currentExpression = currentExpression === '0' ? key + '(' : currentExpression + key + '(';
-                break;
-            case 'pi':
-            case 'e':
-                 if (currentExpression === '0') {
-                    currentExpression = key;
-                } else if (!isNaN(currentExpression.slice(-1))){
-                     currentExpression += '*' + key;
-                } else {
-                     currentExpression += key;
-                }
-                break;
-            default:
-                if (/^[0-9.()/*\-+,eE]/.test(key) || key === 'EXP') {
-                    if (currentExpression === '0' && !('.()/*-+'.includes(key))) {
-                        currentExpression = key;
-                    } else {
-                        currentExpression += key;
-                    }
-                }
-                break;
-        }
-        updateDisplay();
+    const setCursorToEnd = (element) => {
+        const range = document.createRange();
+        const selection = window.getSelection();
+        range.selectNodeContents(element);
+        range.collapse(false); // false to collapse to the end
+        selection.removeAllRanges();
+        selection.addRange(range);
     };
-    
+
+    // --- Core Calculation Logic ---
     const calculate = (expr) => {
+        if (!expr) return '0';
         try {
             let evalExpr = expr
+                .replace(/,/g, '') // Remove formatting commas
                 .replace(/×/g, '*')
                 .replace(/÷/g, '/')
                 .replace(/π/g, 'Math.PI')
@@ -89,44 +50,88 @@ document.addEventListener('DOMContentLoaded', () => {
                 .replace(/√/g, 'Math.sqrt')
                 .replace(/log/g, 'Math.log10')
                 .replace(/ln/g, 'Math.log')
-                .replace(/EXP/g, 'e');
+                .replace(/sin/g, 'Math.sin')
+                .replace(/cos/g, 'Math.cos')
+                .replace(/tan/g, 'Math.tan')
+                .replace(/EXP/g, 'e')
+                .replace(/(\d)Math\.PI/g, '$1 * Math.PI')
+                .replace(/(\d)Math\.E/g, '$1 * Math.E')
+                .replace(/(\d)(Math\.sin|Math\.cos|Math\.tan|Math\.log10|Math\.log|Math\.sqrt)/g, '$1 * $2')
+                .replace(/\)(\d|\()/g, ') * $1');
 
-            evalExpr = evalExpr.replace(/(sin|cos|tan|sqrt|log10|log)\(/g, 'Math.$1(');
             const result = new Function('return ' + evalExpr)();
-            if (isNaN(result) || !isFinite(result)) return 'Error';
             return parseFloat(result.toPrecision(12));
         } catch (error) {
-            return 'Error';
+            return 'Error'; 
         }
     };
+    
+    const factorial = (n) => {
+        if (n < 0 || n % 1 !== 0) return 'Error';
+        if (n === 0) return 1;
+        return n > 1 ? n * factorial(n - 1) : 1;
+    };
 
+    // --- Event Handlers ---
+    const handleButtonClick = (key) => {
+        if (currentExpression === '0' && !('.()/*-+'.includes(key))) {
+            currentExpression = '';
+        }
+
+        switch (key) {
+            case 'AC':
+                currentExpression = '0';
+                resultDisplay.textContent = '0';
+                break;
+            case 'DEL':
+                currentExpression = currentExpression.slice(0, -1) || '0';
+                break;
+            case '=':
+                currentExpression = resultDisplay.textContent.replace(/,/g, '');
+                updateDisplay(false); // Don't recalculate, just update expression
+                return; // Exit to avoid re-adding to expression
+            case 'sqr':
+                currentExpression += '^2';
+                break;
+            case 'pow':
+                currentExpression += '^';
+                break;
+            case 'fact':
+                try {
+                    const numToFactorial = calculate(currentExpression);
+                    currentExpression = String(factorial(Number(numToFactorial)));
+                } catch (e) { currentExpression = 'Error'; }
+                break;
+            default:
+                currentExpression += key;
+                break;
+        }
+        updateDisplay();
+    };
+
+    // --- Event Listeners ---
     buttons.addEventListener('click', (event) => {
         const target = event.target;
-        if (!target.classList.contains('btn')) return;
-        handleKeyPress(target.dataset.key);
-    });
-
-    document.addEventListener('keydown', (event) => {
-        event.preventDefault(); // Prevent default browser actions for keys like '/'
-        let key = event.key;
-        // Map keyboard characters to calculator keys
-        if (key === 'Enter') key = '=';
-        if (key === '/' || key === '*' || key === '-' || key === '+') {
-             // Let it pass through
-        } else if(key.match(/^[a-zA-Z]$/)) {
-            // Prevent alphabet keys unless they are part of a function
-            const validLetterKeys = ['e']; // 'e' is a constant
-            if (!validLetterKeys.includes(key.toLowerCase())) return;
-        }
-
-        const button = document.querySelector(`[data-key="${key}"]`);
-        if (button) {
-            button.focus();
-            handleKeyPress(key);
-        } else {
-             handleKeyPress(key);
+        if (target.matches('.btn')) {
+            handleButtonClick(target.dataset.key);
         }
     });
 
+    // Listen for direct input on the expression display
+    expressionDisplay.addEventListener('input', (e) => {
+        // Basic sanitization - better handling might be needed
+        currentExpression = e.target.textContent.replace(/\n/g, ''); 
+        updateDisplay();
+    });
+
+    // Prevent non-number/operator keys in contenteditable, handle Enter and Backspace
+    expressionDisplay.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleButtonClick('=');
+        }
+    });
+
+    // Initialize
     updateDisplay();
 });
