@@ -9,8 +9,10 @@
     --btn-hover-bg: #f1f3f4;
     --operator-btn-bg: #e8f0fe;
     --operator-btn-color: #1967d2;
-    --func-btn-bg: #fce8e6;
-    --func-btn-color: #c5221f;
+    --func-btn-bg: #f8f9fa;
+    --func-btn-color: #5f6368;
+    --clear-btn-bg: #fce8e6;
+    --clear-btn-color: #c5221f;
     --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -62,7 +64,7 @@ body {
 
 .calculator {
     width: 100%;
-    max-width: 360px;
+    max-width: 420px;
     background: var(--calculator-bg);
     border-radius: 12px;
     padding: 20px;
@@ -73,7 +75,7 @@ body {
     font-family: 'Orbitron', sans-serif;
     background-color: var(--display-bg);
     color: var(--display-font-color);
-    font-size: 2.8em;
+    font-size: 2.5em;
     padding: 20px;
     text-align: right;
     border-radius: 8px;
@@ -84,15 +86,15 @@ body {
 
 .buttons {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
 }
 
 .btn {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: 500;
-    padding: 20px;
+    padding: 18px;
     border: none;
     border-radius: 8px;
     background-color: var(--btn-bg);
@@ -115,11 +117,16 @@ body {
 .btn.func {
     background-color: var(--func-btn-bg);
     color: var(--func-btn-color);
-    font-size: 1.2em;
+}
+
+.btn.clear {
+    background-color: var(--clear-btn-bg);
+    color: var(--clear-btn-color);
+    font-weight: bold;
 }
 
 #equals {
-    grid-column: span 1; /* Default to 1 span */
+    grid-column: span 2;
     background-color: #4285f4;
     color: white;
 }
@@ -137,14 +144,6 @@ body {
     color: var(--header-font-color);
 }
 
-.instructions ul {
-    padding-left: 20px;
-}
-
-.instructions li {
-    margin-bottom: 10px;
-}
-
 footer {
     text-align: center;
     margin-top: 40px;
@@ -159,25 +158,21 @@ footer {
     text-decoration: none;
 }
 
-.back-link:hover {
-    text-decoration: underline;
-}
-
 @media (max-width: 600px) {
     .app-container {
-        padding: 20px;
-    }
-    
-    .buttons {
-        gap: 10px;
-    }
-
-    .btn {
-        font-size: 1.2em;
         padding: 15px;
     }
-
+    .calculator {
+        padding: 15px;
+    }
+    .buttons {
+        gap: 8px;
+    }
+    .btn {
+        padding: 12px;
+        font-size: 1em;
+    }
     .display {
-        font-size: 2.2em;
+        font-size: 2em;
     }
 }

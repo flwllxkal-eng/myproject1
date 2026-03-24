@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Series #9: Scientific Calculator</title>
-    <meta name="description" content="A powerful and easy-to-use online scientific calculator. Supports trigonometric functions, logarithms, parentheses, and order of operations.">
+    <meta name="description" content="A powerful and easy-to-use online scientific calculator with a standard layout, supporting trigonometric functions, logarithms, exponents, and more.">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,32 +21,47 @@
             <div class="calculator">
                 <div id="display" class="display">0</div>
                 <div class="buttons">
-                    <button class="btn func" data-key="AC">AC</button>
+                    <!-- Row 1 -->
+                    <button class="btn func" data-key="sqrt">√</button>
+                    <button class="btn func" data-key="sqr">x²</button>
+                    <button class="btn func" data-key="pow">xʸ</button>
                     <button class="btn func" data-key="(">(</button>
                     <button class="btn func" data-key=")">)</button>
-                    <button class="btn operator" data-key="/">÷</button>
 
+                    <!-- Row 2 -->
                     <button class="btn func" data-key="sin">sin</button>
                     <button class="btn" data-key="7">7</button>
                     <button class="btn" data-key="8">8</button>
                     <button class="btn" data-key="9">9</button>
-                    <button class="btn operator" data-key="*">×</button>
+                    <button class="btn func" data-key="DEL">DEL</button>
+                    
 
+                    <!-- Row 3 -->
                     <button class="btn func" data-key="cos">cos</button>
                     <button class="btn" data-key="4">4</button>
                     <button class="btn" data-key="5">5</button>
                     <button class="btn" data-key="6">6</button>
-                    <button class="btn operator" data-key="-">−</button>
+                    <button class="btn operator" data-key="*">×</button>
+                    
 
+                    <!-- Row 4 -->
                     <button class="btn func" data-key="tan">tan</button>
                     <button class="btn" data-key="1">1</button>
                     <button class="btn" data-key="2">2</button>
                     <button class="btn" data-key="3">3</button>
-                    <button class="btn operator" data-key="+">+</button>
+                    <button class="btn operator" data-key="-">−</button>
 
+                    <!-- Row 5 -->
                     <button class="btn func" data-key="log">log</button>
                     <button class="btn" data-key="0">0</button>
                     <button class="btn" data-key=".">.</button>
+                    <button class="btn operator" data-key="+">+</button>
+                    <button class="btn operator" data-key="/">÷</button>
+
+                    <!-- Row 6 -->
+                    <button class="btn func" data-key="ln">ln</button>
+                    <button class="btn func" data-key="pi">π</button>
+                    <button class="btn func clear" data-key="AC">AC</button>
                     <button id="equals" class="btn operator" data-key="=">=</button>
                 </div>
             </div>
@@ -54,18 +69,17 @@
 
         <section class="instructions">
             <h2>How to Use</h2>
-            <p>This calculator functions like a standard scientific calculator. It respects the order of operations (PEMDAS/BODMAS).</p>
+            <p>A standard scientific calculator that respects the order of operations (PEMDAS/BODMAS).</p>
             <ul>
-                <li><strong>AC (All Clear):</strong> Clears all input and resets the calculator.</li>
-                <li><strong>( ) :</strong> Use parentheses to group operations and control the order of evaluation.</li>
-                <li><strong>sin, cos, tan:</strong> Calculates the sine, cosine, or tangent of a number (assumed to be in radians). Example: <code>sin(3.14)</code></li>
-                <li><strong>log:</strong> Calculates the base-10 logarithm. Example: <code>log(100)</code></li>
-                <li><strong>Standard Operations:</strong> Use <code>+</code>, <code>-</code>, <code>×</code>, <code>÷</code> for basic arithmetic.</li>
+                <li><strong>Basic Operations:</strong> Use <code>+</code>, <code>-</code>, <code>×</code>, <code>÷</code>.</li>
+                <li><strong>Parentheses <code>( )</code>:</strong> Group operations to control evaluation order.</li>
+                <li><strong>Functions:</strong> Use <code>sin</code>, <code>cos</code>, <code>tan</code>, <code>log</code>, <code>ln</code>, <code>√</code>. Enter as <code>sin(3.14)</code>.</li>
+                <li><strong>Exponents:</strong> Use <code>x²</code> for squaring and <code>xʸ</code> (input as `^`) for general powers. Ex: <code>2^3</code> results in 8.</li>
+                <li><strong>DEL/AC:</strong> <code>DEL</code> removes the last character. <code>AC</code> clears all input.</li>
             </ul>
             <h3>Rules & Features</h3>
-            <p><strong>Order of Operations:</strong> The calculator automatically follows the standard order of operations (Parentheses, Exponents, Multiplication/Division, Addition/Subtraction). For example, <code>2+3*4</code> will correctly result in <code>14</code>.</p>
-            <p><strong>Input:</strong> Click the buttons to build your mathematical expression. The expression is evaluated when you press the <code>=</code> button.</p>
-            <p><strong>Error Handling:</strong> Invalid expressions like <code>2++3</code> or mismatched parentheses will result in an "Error" message. Press 'AC' to start over.</p>
+            <p><strong>Order of Operations:</strong> Automatically follows standard mathematical order. <code>2+3*4</code> correctly results in <code>14</code>.</p>
+            <p><strong>Error Handling:</strong> Invalid expressions result in an "Error" message. Press 'AC' to reset.</p>
         </section>
 
         <footer>

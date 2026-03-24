@@ -3,78 +3,97 @@ document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelector('.buttons');
 
     let currentExpression = '0';
-    let lastResult = null;
 
     function updateDisplay() {
         display.textContent = currentExpression;
     }
 
     function calculate(expression) {
-        // Replace user-facing operators with JS operators
-        let safeExpression = expression.replace(/×/g, '*').replace(/÷/g, '/');
+        // Replace user-facing operators with JS-compatible versions
+        let safeExpression = expression
+            .replace(/×/g, '*')
+            .replace(/÷/g, '/')
+            .replace(/π/g, 'Math.PI')
+            .replace(/√/g, 'Math.sqrt')
+            .replace(/\^/g, '**'); // For x^y
 
-        // Handle trigonometric and log functions
-        // This regex finds sin, cos, tan, log followed by parentheses
-        // and wraps the argument with the appropriate Math function call
-        safeExpression = safeExpression.replace(/(sin|cos|tan|log)\(([^)]+)\)/g, (match, func, arg) => {
-            // For log, convert to Math.log10
-            if (func === 'log') {
-                return `Math.log10(${arg})`;
-            }
-            // For trig functions, convert argument from degrees to radians if needed
-            // Assuming input is in radians as per instructions for now
-            return `Math.${func}(${arg})`;
-        });
+        // Handle log and ln
+        safeExpression = safeExpression.replace(/log/g, 'Math.log10').replace(/ln/g, 'Math.log');
+
+        // Handle trigonometric functions (sin, cos, tan)
+        safeExpression = safeExpression.replace(/(sin|cos|tan)/g, 'Math.$1');
 
         try {
-            // Using Function constructor for safer evaluation than eval()
+            // Using the Function constructor for safer evaluation
             const result = new Function('return ' + safeExpression)();
             
             if (isNaN(result) || !isFinite(result)) {
-                return 'Error';
+                return 'Error: Invalid Calculation';
             }
             
-            // Round to a reasonable number of decimal places to avoid floating point issues
+            // Round to avoid floating point inaccuracies
             return Math.round(result * 1e12) / 1e12;
-        } catch (e) {
+        } catch (error) {
+            console.error("Calculation Error:", error);
             return 'Error';
         }
     }
 
     buttons.addEventListener('click', (event) => {
-        if (!event.target.classList.contains('btn')) {
-            return;
-        }
+        if (!event.target.classList.contains('btn')) return;
 
         const key = event.target.dataset.key;
+        
+        if (currentExpression === 'Error' || currentExpression === 'Error: Invalid Calculation') {
+            currentExpression = '0';
+        }
 
         switch (key) {
             case 'AC':
                 currentExpression = '0';
-                lastResult = null;
+                break;
+            case 'DEL':
+                if (currentExpression.length > 1) {
+                    currentExpression = currentExpression.slice(0, -1);
+                } else {
+                    currentExpression = '0';
+                }
                 break;
             case '=':
                 if (currentExpression) {
-                    const result = calculate(currentExpression);
-                    lastResult = result;
-                    currentExpression = String(result);
+                    currentExpression = String(calculate(currentExpression));
                 }
                 break;
+            case 'sqr':
+                currentExpression = `(${currentExpression})**2`;
+                currentExpression = String(calculate(currentExpression));
+                break;
+            case 'pow': // Represents x^y
+                 if (currentExpression === '0') currentExpression = '';
+                 currentExpression += '^';
+                 break;
+            case 'sqrt':
             case 'sin':
             case 'cos':
             case 'tan':
             case 'log':
-                 if (currentExpression === '0' || lastResult !== null) {
+            case 'ln':
+                if (currentExpression === '0') {
                     currentExpression = key + '(';
-                    lastResult = null;
                 } else {
                     currentExpression += key + '(';
                 }
                 break;
+            case 'pi':
+                 if (currentExpression === '0') {
+                    currentExpression = 'π';
+                } else {
+                    currentExpression += 'π';
+                }
+                break;
             default: // Numbers, operators, parentheses
-                if (currentExpression === '0' || lastResult !== null) {
+                if (currentExpression === '0') {
                     currentExpression = key;
-                    lastResult = null;
                 } else {
                     currentExpression += key;
                 }
