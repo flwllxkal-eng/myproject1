@@ -4,17 +4,17 @@ body {
     margin: 0;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align to the top */
+    align-items: flex-start;
     min-height: 100vh;
     padding: 20px 0;
 }
 
 .app-container {
     width: 100%;
-    max-width: 900px; /* Increased max-width for better layout */
+    max-width: 800px; /* Adjusted width */
     background: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4pxmelier20px rgba(0, 0, 0, 0.08);
     padding: 30px;
 }
 
@@ -35,26 +35,28 @@ h1 {
     color: #7f8c8d;
 }
 
+/* --- MODIFIED: Single column layout --- */
 .calculator-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Two-column layout */
+    display: flex; /* Changed from grid */
+    flex-direction: column; /* Stack calculator and instructions */
+    align-items: center; /* Center calculator horizontally */
     gap: 40px;
-    align-items: flex-start;
 }
 
 .calculator {
+    width: 100%;
+    max-width: 500px; /* Set a max-width for the calculator itself */
     background: #fff;
     border-radius: 8px;
 }
 
-/* --- RESTORED SINGLE DISPLAY APPEARANCE --- */
 .display {
     background-color: #ecf0f1;
     border-radius: 8px;
     padding: 15px 20px;
     margin-bottom: 20px;
     text-align: right;
-    min-height: 80px; /* Reduced height */
+    min-height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -63,38 +65,42 @@ h1 {
 
 .expression-display {
     font-family: 'Roboto', monospace;
-    color: #7f8c8d; /* Lighter color for expression */
+    color: #7f8c8d;
     font-size: 1.4rem;
     min-height: 28px;
-    outline: none; /* No focus outline */
+    outline: none;
     overflow-x: auto;
 }
 
 .result-display {
     font-family: 'Orbitron', sans-serif;
-    color: #2c3e50; /* Darker, primary color for result */
-    font-size: 2.5rem; /* Large and clear */
+    color: #2c3e50;
+    font-size: 2.5rem;
     font-weight: 500;
     line-height: 1.1;
 }
 
+/* --- MODIFIED: Wider grid for better button layout --- */
 .buttons {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr); /* Changed to 6 columns */
     gap: 12px;
 }
 
 .btn {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem; /* Slightly smaller font for more buttons */
     font-weight: 500;
-    padding: 18px;
+    padding: 16px 12px;
     border: 1px solid #bdc3c7;
     border-radius: 6px;
     background: #fff;
     color: #34495e;
     cursor: pointer;
     transition: all 0.1s ease;
+    display: flex; /* For centering content */
+    justify-content: center;
+    align-items: center;
 }
 
 .btn:hover {
@@ -107,12 +113,26 @@ h1 {
     transform: translateY(1px);
 }
 
+/* --- MODIFIED: Spanning buttons --- */
+.btn.zero {
+    grid-column: span 2;
+}
+
+.btn.equals {
+    grid-row: span 2;
+    background-color: #2ecc71;
+    border-color: #27ae60;
+    color: #fff;
+}
+.btn.equals:hover {
+    background-color: #27ae60;
+}
+
 .btn.operator {
     background: #3498db;
     color: #fff;
     border-color: #2980b9;
 }
-
 .btn.operator:hover {
     background: #2980b9;
 }
@@ -122,24 +142,15 @@ h1 {
     color: #fff;
     border-color: #7f8c8d;
 }
-
 .btn.func:hover {
     background: #7f8c8d;
 }
 
-#equals {
-    background-color: #2ecc71;
-    border-color: #27ae60;
-    color: #fff;
-}
-
-#equals:hover {
-    background-color: #27ae60;
-}
-
 /* Instructions Section */
 .instructions {
-    padding: 0 10px; /* Give it some space */
+    width: 100%;
+    margin-top: 40px; /* Add space above instructions */
+    padding: 0 10px;
 }
 
 .instructions h2, .instructions h3, .instructions h4 {
@@ -170,11 +181,8 @@ footer {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .calculator-body {
-        grid-template-columns: 1fr; /* Stack on smaller screens */
-    }
-    .instructions {
-        margin-top: 30px;
+@media (max-width: 600px) {
+    .buttons {
+        grid-template-columns: repeat(5, 1fr); /* Adjust for smaller screens */
     }
 }

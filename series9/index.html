@@ -16,49 +16,53 @@
             <p class="subtitle">Real-time results and editable expressions</p>
         </header>
 
-        <main class="calculator-body">
+        <div class="calculator-body">
             <div class="calculator">
-                <!-- The display will be a single component visually, but two elements functionally -->
                 <div class="display">
                     <div id="expression-display" class="expression-display" contenteditable="true" spellcheck="false">0</div>
                     <div id="result-display" class="result-display" aria-live="polite">0</div>
                 </div>
+                <!-- RESTRUCTURED AND FINALIZED BUTTON LAYOUT -->
                 <div class="buttons">
+                    <!-- Row 1 -->
                     <button class="btn func" data-key="sin">sin</button>
                     <button class="btn func" data-key="cos">cos</button>
                     <button class="btn func" data-key="tan">tan</button>
                     <button class="btn func" data-key="log">log</button>
                     <button class="btn func" data-key="ln">ln</button>
+                    <button class="btn func" data-key="AC">AC</button>
                     
+                    <!-- Row 2 -->
                     <button class="btn func" data-key="(">(</button>
                     <button class="btn func" data-key=")">)</button>
-                    <button class="btn func" data-key="sqrt">√</button>
-                    <button class="btn func" data-key="sqr">x²</button>
-                    <button class="btn func" data-key="pow">xʸ</button>
-                    
                     <button class="btn" data-key="7">7</button>
                     <button class="btn" data-key="8">8</button>
                     <button class="btn" data-key="9">9</button>
                     <button class="btn operator" data-key="/">÷</button>
-                    <button class="btn func clear" data-key="AC">AC</button>
 
+                    <!-- Row 3 -->
+                    <button class="btn func" data-key="sqrt">√</button>
+                    <button class="btn func" data-key="sqr">x²</button>
                     <button class="btn" data-key="4">4</button>
                     <button class="btn" data-key="5">5</button>
                     <button class="btn" data-key="6">6</button>
                     <button class="btn operator" data-key="*">×</button>
-                    <button class="btn func" data-key="DEL">DEL</button>
 
+                    <!-- Row 4 -->
+                    <button class="btn func" data-key="pow">xʸ</button>
+                    <button class="btn func" data-key="fact">x!</button>
                     <button class="btn" data-key="1">1</button>
                     <button class="btn" data-key="2">2</button>
                     <button class="btn" data-key="3">3</button>
                     <button class="btn operator" data-key="-">−</button>
-                    <button class="btn func" data-key="fact">x!</button>
-                    
-                    <button class="btn" data-key="0">0</button>
-                    <button class="btn" data-key=".">.</button>
+
+                    <!-- Row 5 -->
                     <button class="btn" data-key="pi">π</button>
                     <button class="btn" data-key="e">e</button>
-                    <button id="equals" class="btn operator" data-key="=">=</button>
+                    <button class="btn zero" data-key="0">0</button>
+                    <button class="btn" data-key=".">.</button>
+                    <button class="btn operator" data-key="+">+</button>
+                    <button class="btn equals" data-key="=">=</button>
                 </div>
             </div>
 
@@ -122,7 +126,7 @@
                     </ul>
                 </article>
             </section>
-        </main>
+        </div>
         
         <footer>
             <a href="/" class="back-link">&larr; Back to Main Page</a>
