@@ -1,0 +1,6 @@
+[
+    { "id": 1, "name": "Stylish T-Shirt", "price": 25.00, "image": "https://via.placeholder.com/200" },
+    { "id": 2, "name": "Classic Jeans", "price": 60.00, "image": "https://via.placeholder.com/200" },
+    { "id": 3, "name": "Comfortable Sneakers", "price": 80.00, "image": "https://via.placeholder.com/200" },
+    { "id": 4, "name": "Modern Watch", "price": 150.00, "image": "https://via.placeholder.com/200" }
+]

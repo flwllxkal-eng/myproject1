@@ -115,6 +115,56 @@ body {
     line-height: 1.6;
 }
 
+/* Direct Link Section for Shopping Mall */
+.direct-link-section {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+    border: 1px solid #e0e0e0;
+}
+
+.direct-link-section h2 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #000;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.direct-link-section p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.shopping-direct-button {
+    display: inline-block;
+    background: linear-gradient(45deg, #ff6b6b, #f06595);
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 18px 45px;
+    border-radius: 50px;
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: pulse-animation 2.5s infinite ease-in-out;
+}
+
+.shopping-direct-button:hover {
+    animation-play-state: paused;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(255, 107, 107, 0.6);
+}
+
+.shopping-direct-button:active {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
 footer {
     text-align: center;
     color: #999;
@@ -137,6 +187,21 @@ footer {
 
 .footer-links a:hover {
     color: #0056b3;
+}
+
+@keyframes pulse-animation {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    }
 }
 
 .app-container {
@@ -188,7 +253,10 @@ footer {
     .main-header h1, .app-header h1 {
         font-size: 2.2rem;
     }
-    .series-navigator, .app-container {
+    .series-navigator, .app-container, .direct-link-section {
         padding: 25px;
+    }
+    .direct-link-section h2 {
+        font-size: 2rem;
     }
 }

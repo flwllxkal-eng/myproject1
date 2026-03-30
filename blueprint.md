@@ -1,86 +1,43 @@
-# AI-Powered Web App Development Blueprint
 
-## Overview
+# 프로젝트 청사진: 쿠팡 파트너스 승인용 단일 리뷰 페이지
 
-This document outlines the development plan and features for a series of AI-powered web applications. The goal is to create modern, useful, and aesthetically pleasing single-page applications using vanilla JavaScript, HTML, and CSS, leveraging modern web standards. Each series builds upon the last, introducing new concepts and capabilities.
+## 1. 개요
 
-## Series #1: Simple Image Gallery
+이 프로젝트의 목적은 쿠팡 파트너스 제휴 프로그램의 최종 승인을 통과하기 위한 고품질의 단일 상품 리뷰 웹페이지를 제작하는 것입니다. 사용자의 요청에 따라, 기존의 복잡한 쇼핑몰 구조에서 벗어나 실제 운영되는 블로그 글과 같은 형태의 정적 페이지로 전환되었습니다. 이 페이지는 심사 기준을 충족시키기 위한 모든 필수 요소를 포함하고 있습니다.
 
-*   **Objective:** Create a clean, responsive image gallery.
-*   **Features:**
-    *   Dynamic image loading from a JavaScript array.
-    *   Modal view for larger images when a thumbnail is clicked.
-*   **Tech Stack:** HTML, CSS, JavaScript (ES Modules).
+## 2. 애플리케이션 상세 명세 (최종 버전)
 
-## Series #2: Interactive Quiz Game
+### 가. `shopping/index.html` - 리뷰 콘텐츠 페이지
 
-*   **Objective:** Build an engaging, interactive quiz application.
-*   **Features:**
-    *   Multiple-choice questions loaded from a structured JavaScript object.
-    *   Immediate feedback on user answers (correct/incorrect).
-*   **Tech Stack:** HTML, CSS, JavaScript (ES Modules).
+*   **구조**: 시맨틱 HTML5 태그(`header`, `article`, `h1`, `p` 등)를 사용하여 검색 엔진 최적화(SEO) 및 웹 접근성을 준수합니다.
+*   **콘텐츠**:
+    *   **헤더**: "내돈내산 곰곰 바나나 후기", 작성자("바나나 전도사"), 최종 수정일("2024년 5월 24일")을 포함합니다.
+    *   **파트너스 공지**: "이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."라는 필수 문구를 눈에 잘 띄는 상단에 배치했습니다.
+    *   **리뷰 본문**: 사용자의 생생한 경험을 담은 친근하고 재미있는 어조의 "내돈내산" 후기를 작성했습니다.
+    *   **이미지**: 저작권 문제가 없는 고품질 무료 스톡 이미지(Unsplash) 2장을 삽입하여 콘텐츠의 시각적 매력을 높였습니다.
+    *   **구매 링크**: 심사 가이드라인을 준수하기 위해 버튼 형식이 아닌, 클릭 가능한 일반 텍스트 URL 형태로 유효한 쿠팡 상품 페이지 링크(`https://www.coupang.com/vp/products/116251088`)를 제공합니다.
+*   **기능**: 'Advertise with Us' 플로팅 버튼을 통해 광고 문의 모달을 호출합니다.
 
-## Series #3: Versatile Unit Converter
+### 나. `shopping/style.css` - 디자인 및 스타일링
 
-*   **Objective:** Create a tool for converting various units of measurement.
-*   **Features:**
-    *   Supports Length, Weight, and Temperature conversions.
-    *   Real-time conversion as the user types.
-*   **Tech Stack:** HTML, CSS, JavaScript (ES Modules).
+*   **디자인**: 전반적으로 깨끗하고 가독성이 높은 블로그 스타일의 디자인을 적용했습니다.
+*   **레이아웃**: 콘텐츠 영역을 `max-width: 720px`로 설정하여 PC와 모바일 환경 모두에서 최적의 가독성을 제공하는 반응형 디자인을 구현했습니다.
+*   **타이포그래피**: 가독성이 뛰어난 `Pretendard` 웹 폰트를 기본으로 사용합니다.
+*   **스타일**: 헤더, 본문, 이미지, 파트너스 공지 박스, 구매 링크 박스 등 모든 요소에 일관성 있는 디자인을 적용하여 전문적인 느낌을 주도록 했습니다.
 
-## Series #4: Real-Time Currency Converter
+### 다. `shopping/main.js` - 인터랙션 및 기능
 
-*   **Objective:** Build a blog-style page with a real-time currency conversion tool.
-*   **Features:**
-    *   Fetches the latest currency exchange rates from the `frankfurter.app` API.
-    *   User-friendly interface for currency selection and conversion.
-*   **Tech Stack:** HTML, CSS, JavaScript with `fetch` API.
+*   **주요 기능**: 페이지 우측 하단에 위치한 'Advertise with Us' 버튼의 클릭 이벤트를 처리합니다.
+*   **모달 창 구현**: 버튼 클릭 시, `advertise.html` 파일의 내용을 비동기(`fetch`)로 불러와 동적으로 생성된 모달 창에 표시합니다. 사용자는 페이지를 벗어나지 않고 광고 문의 정보를 확인할 수 있습니다.
 
-## Series #5: Advanced Case Converter
+### 라. `shopping/advertise.html` - 광고 문의 정보
 
-*   **Objective:** Develop a comprehensive tool for text case conversion.
-*   **Features:**
-    *   Supports multiple conversion options (UPPERCASE, lowercase, etc.).
-    *   Instant, real-time text conversion.
-*   **Tech Stack:** HTML, CSS, JavaScript (ES Modules).
+*   `main.js`에 의해 호출되는 HTML 조각 파일로, 광고 문의를 위한 이메일 주소 등의 연락처 정보를 담고 있습니다.
 
-## Series #6: Word and Character Counter
+## 3. 최근 변경 내역 (2024-05-24)
 
-*   **Objective:** Create a real-time tool to count words, characters, sentences, and spaces.
-*   **Features:**
-    *   Instantly counts and displays key metrics as the user types.
-    *   Calculates Word Count, Character Count, Space Count, and Sentence Count.
-*   **Tech Stack:** HTML, CSS, JavaScript (ES Modules).
+*   **목표**: 만료된 쿠팡 상품 링크를 유효한 링크로 교체하고, 페이지의 이미지를 새롭게 변경하여 완성도를 높입니다.
+*   **조치 1: 링크 업데이트**: `shopping/index.html` 파일 내의 기존 쿠팡 링크를 사용자가 제공한 새로운 유효 링크(`https://www.coupang.com/vp/products/116251088`)로 교체했습니다. URL의 불필요한 파라미터는 제거하여 간결하게 만들었습니다.
+*   **조치 2: 이미지 교체**: 기존에 사용된 이미지를 더욱 신선하고 감성적인 분위기의 새로운 무료 스톡 이미지 2장으로 교체하여 페이지의 시각적 품질을 향상시켰습니다.
+*   **조치 3: 청사진 작성**: 모든 작업 완료 후, 프로젝트의 전체 구조와 최종 변경 사항을 기록한 `blueprint.md` 파일을 생성했습니다.
 
-## Series #7: Image File Size Calculator
-
-*   **Objective:** Create a tool to estimate image file sizes based on their properties.
-*   **Features:**
-    *   **Input-Based Calculation:** Calculates the estimated file size from user inputs for image width, height, and color depth (bits per pixel).
-    *   **Real-Time Estimation:** Provides immediate file size estimates in Bytes, Kilobytes (KB), and Megabytes (MB).
-    *   **Educational Content:** The page will feature high-quality content explaining the technical concepts of digital images, such as pixels, color depth, and compression. It will also outline why understanding file size is crucial for web performance and SEO, targeting AdSense approval.
-    *   **User-Friendly Interface:** A clean and intuitive UI, consistent with previous series, for easy input and clear results.
-*   **Tech Stack:** HTML, CSS, JavaScript (ES Modules).
-
-## Series #8: Encryption/Decryption Tool
-
-*   **Objective:** Build a secure tool for text encryption and decryption using modern web standards.
-*   **Features:**
-    *   **Secure Encryption:** Utilizes the **Web Crypto API** with the industry-standard **AES-GCM** algorithm for strong, authenticated encryption.
-    *   **Password-Based Key Derivation:** Securely derives a cryptographic key from a user-provided password using the **PBKDF2** algorithm, preventing simple dictionary attacks.
-    *   **User-Friendly Interface:** Simple inputs for text and a password, with clear buttons for "Encrypt" and "Decrypt" actions.
-    *   **Educational Content:** Includes high-quality explanations about the importance of encryption, what AES-GCM is, how the Web Crypto API works, and why password-based key derivation is crucial for security. This content aims to build user trust and provide educational value.
-*   **Tech Stack:** HTML, CSS, and modern JavaScript utilizing the **Web Crypto API**.
-
----
-
-### **Current Request Plan: Series #8**
-
-1.  **Correct `index.html` Link:** Fix the missing hyperlink for the Series #7 navigation card on the main page.
-2.  **Update `blueprint.md`:** Add the full plan for Series #8.
-3.  **Create `series8` Directory:** Set up a new directory for the eighth project.
-4.  **Develop `series8/index.html`:** Structure the page with text areas for input/output, a password field, and control buttons. Include detailed, original English content on Web Crypto, AES-GCM, and security best practices.
-5.  **Develop `series8/style.css`:** Adapt the styles from previous series to maintain a consistent look and feel.
-6.  **Develop `series8/main.js`:** Implement the core cryptographic functions using the Web Crypto API, including key derivation (PBKDF2), encryption (AES-GCM), and decryption (AES-GCM).
-7.  **Update Main `index.html`:** Add a new navigation card linking to the "Encryption/Decryption Tool" series.
-8.  **Git Integration:** Commit all new and modified files and push them to the remote repository.
